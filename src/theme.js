@@ -30,6 +30,7 @@ const colourTheme = {
   appBackgroundColour: `${primary}`,
   textColour: `${secondaryLight}`,
   buttonColour: `${extraLightGray}`,
+  buttonHoverColour: `${error}`,
 }
 
 const boxShadows = [
