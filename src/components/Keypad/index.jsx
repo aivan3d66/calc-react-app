@@ -19,7 +19,7 @@ export default (
   const onEvalBtnHandler = () => evaluate()
 
   return (
-    <Keypad>
+    <Keypad id="keypadContainer">
       {
         btnValues.map((b, i) => {
           const onBtnClick = () => addValue(b.value)
