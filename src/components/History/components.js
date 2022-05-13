@@ -4,7 +4,7 @@ export const History = styled.div`
   display: flex;
   flex-direction: column;
   width: 340px;
-  height: 80%;
+  height: 85%;
   padding: 20px 0;
   margin: 0 auto;
   color: ${props => props.schema.textColour};
