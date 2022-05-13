@@ -1,13 +1,11 @@
 import React, { lazy, Suspense } from 'react'
 import { Switch, Route } from 'react-router-dom'
-
 import { Routes } from '@/constants'
-
 import Loader from '@/components/Loader'
+import PageLayout from '@/pages/PageLayout'
 
 const HomePage = lazy(() => import('@/pages/Home'))
 const SettingsPage = lazy(() => import('@/pages/Settings'))
-const Layout = lazy(() => import('@/pages/PageLayout'))
 
 export default () => (
   <Suspense fallback={<Loader />}>
@@ -15,8 +13,9 @@ export default () => (
       <Route
         exact
         path={Routes.START_PAGE}
-        component={Layout}
-      />
+      >
+        <PageLayout />
+      </Route>
       <Route
         exact
         path={Routes.HOME_PAGE}
