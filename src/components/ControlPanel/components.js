@@ -9,6 +9,7 @@ export const ControlPanel = styled.div`
   padding: 0 20px;
 
   button {
+    color: ${props => props.schema.textColour};
     font: normal normal normal 32px/44px "Gill Sans", sans-serif;
     cursor: pointer;
     border-radius: 32px;
