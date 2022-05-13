@@ -9,7 +9,7 @@ export default () => {
   const schema = themeValue === 'Light theme' ? theme.appLightTheme : themeValue === 'Colored theme' ? theme.colourTheme : theme.appDarkTheme
 
   return (
-    <Header schema={schema}>
+    <Header schema={schema} id="headerNavigation">
       <HeaderWrapper>
         <h1>Calculator App</h1>
         <Navigation>
