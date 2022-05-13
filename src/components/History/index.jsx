@@ -9,7 +9,7 @@ export default ({ historyList }) => {
   const schema = themeValue === 'Light theme' ? theme.appLightTheme : themeValue === 'Colored theme' ? theme.colourTheme : theme.appDarkTheme
 
   return (
-    <History schema={schema}>
+    <History schema={schema} id="historyContainer">
       <h2>History</h2>
       <ul>
         {
