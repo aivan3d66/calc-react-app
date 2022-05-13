@@ -87,10 +87,6 @@ export const btnValues = [
     value: 'CE',
     dispatchType: ACTIONS.DELETE_VALUE,
   },
-  // {
-  //   value: '+/-',
-  //   dispatchType: ACTIONS.ADD_VALUE,
-  // },
   {
     value: '%',
     dispatchType: ACTIONS.ADD_VALUE,
