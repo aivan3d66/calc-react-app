@@ -14,7 +14,7 @@ export default () => {
   const onSelectHandler = value => dispatch(actions.setToggleTheme(value))
 
   return (
-    <Settings>
+    <Settings id="settingsContainer">
       <Heading id="settings">Settings</Heading>
       <SelectHeading>Switch theme</SelectHeading>
       <Select
