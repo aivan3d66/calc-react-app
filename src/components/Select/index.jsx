@@ -4,7 +4,7 @@ import {Select} from "@/components/Select/components"
 
 export default ({options, onChange, onChangeOption, themeValue}) => {
   const mappedOptions = options
-    ? options.map((o, i) => <option key={o + '-' + i}>{o}</option>)
+    ? options.map((o, i) => <option key={o + '-' + i} value={o}>{o}</option>)
     : []
 
   const onChangeCallback = e => {
