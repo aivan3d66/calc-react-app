@@ -1,45 +1,52 @@
-it('visits the Start page', () => {
-  cy.visit('/')
-  cy.get('div').should('be.visible')
-})
+describe('Pages', () => {
+  it('visits the Start page', () => {
+    cy
+      .visit('/')
+      .get('#headerNavigation').should('be.visible')
+  })
 
-it('visits the Home page', () => {
-  cy.visit('/home')
-  cy.get('#headerNavigation')
-  cy.get('#screenContainer')
-  cy.get('#keypadContainer')
-  cy.get('#historyContainer')
-  cy.get('#controlPanelContainer')
+  it('visits the Home page', () => {
+    cy
+      .visit('/home')
+      .get('#headerNavigation').should('be.visible')
+      .get('#screenContainer').should('be.visible')
+      .get('#keypadContainer').should('be.visible')
+      .get('#historyContainer').should('be.visible')
+      .get('#controlPanelContainer').should('be.visible')
+  })
+
+  it('visits the Settings page', () => {
+    cy
+      .visit('/settings')
+      .get('#headerNavigation').should('be.visible')
+      .get('#settingsContainer').should('be.visible')
+      .get('#selectContainer').should('be.visible')
+  })
 })
 
 describe('Header module', () => {
-  beforeEach(() => {
-    cy.visit('/home')
-  })
-
   it('it check Header', () => {
     cy.visit('/')
-    cy.get('h1').should('be.visible')
-      .contains('Calculator App')
-    cy.get('#headerNavigation')
-      .should('be.visible')
-    cy.get('svg').should('be.visible')
+    cy.get('h1').should('be.visible').contains('Calculator App')
+    cy.get('#headerNavigation').should('be.visible')
   })
 })
 
 describe('Navigation module', () => {
   beforeEach(() => {
-    cy.visit('/home')
+    cy.visit('/')
   })
 
-  it('it check Navigation', () => {
-    cy.get('#headerNavigation')
-      .should('be.visible')
-      .contains('Home')
+  it('it check Navigation /home', () => {
+    cy
+      .get('#headerNavigation a').contains('a', 'Home').click()
+      .url().should('include', '/home')
+  })
 
-    cy.get('#headerNavigation')
-      .should('be.visible')
-      .contains('Settings')
+  it('it check Navigation /setting', () => {
+    cy
+      .get('#headerNavigation a').contains('a', 'Settings').click()
+      .url().should('include', '/settings')
   })
 })
 
@@ -48,9 +55,13 @@ describe('Screen module', () => {
     cy.visit('/home')
   })
 
-  it('it check Screen', () => {
-    cy.get('#screenContainer')
-      .should('be.visible')
+  it('it check screen changes', () => {
+    cy
+      .get('#screenContainer').should('be.empty')
+      .get('#keypadContainer').contains('button', '1').click()
+
+    cy
+      .get('#screenContainer').should('have.text', '1')
   })
 })
 
@@ -60,8 +71,30 @@ describe('Keypad module', () => {
   })
 
   it('it check Keypad', () => {
-    cy.get('#keypadContainer')
-      .should('be.visible')
+    cy.get('#keypadContainer button').should($b => {
+      expect($b).to.have.length(21)
+      expect($b.eq(0)).to.contain('C')
+      expect($b.eq(1)).to.contain('7')
+      expect($b.eq(2)).to.contain('8')
+      expect($b.eq(3)).to.contain('9')
+      expect($b.eq(4)).to.contain('*')
+      expect($b.eq(5)).to.contain('-')
+      expect($b.eq(6)).to.contain('4')
+      expect($b.eq(7)).to.contain('5')
+      expect($b.eq(8)).to.contain('6')
+      expect($b.eq(9)).to.contain('/')
+      expect($b.eq(10)).to.contain('+')
+      expect($b.eq(11)).to.contain('1')
+      expect($b.eq(12)).to.contain('2')
+      expect($b.eq(13)).to.contain('3')
+      expect($b.eq(14)).to.contain('=')
+      expect($b.eq(15)).to.contain('.')
+      expect($b.eq(16)).to.contain('(')
+      expect($b.eq(17)).to.contain('0')
+      expect($b.eq(18)).to.contain(')')
+      expect($b.eq(19)).to.contain('CE')
+      expect($b.eq(20)).to.contain('%')
+    })
   })
 })
 
@@ -70,10 +103,14 @@ describe('History module', () => {
     cy.visit('/home')
   })
 
-  it('it check History', () => {
-    cy.get('#historyContainer')
-      .should('be.visible')
-      .contains('History')
+  it('it check history list', () => {
+    cy
+      .get('#historyContainer ul').should('be.empty')
+      .get('#keypadContainer').contains('button', '2').click()
+      .get('#keypadContainer').contains('button', '+').click()
+      .get('#keypadContainer').contains('button', '2').click()
+      .get('#keypadContainer').contains('button', '=').click()
+      .get('#historyContainer ul').contains('li', '2+2')
   })
 })
 
@@ -82,35 +119,13 @@ describe('Control panel module', () => {
     cy.visit('/home')
   })
 
-  it('it check Control panel', () => {
-    cy.get('#controlPanelContainer')
-      .should('be.visible')
-  })
-})
-
-it('visits the Settings page', () => {
-  cy.visit('/settings')
-  cy.get('#settingsContainer')
-  cy.get('#selectContainer')
-})
-
-describe('Settings module', () => {
-  beforeEach(() => {
-    cy.visit('/settings')
-  })
-
-  it('it check Settings module', () => {
-    cy.get('#settingsContainer')
-      .should('be.visible')
-      .contains('h3', 'Settings')
-
-    cy.get('#settingsContainer')
-      .should('be.visible')
-      .contains('h4', 'Switch theme')
-
-    cy.get('#settingsContainer')
-      .should('be.visible')
-      .contains('button', 'Clear all history')
+  it('it check the control panel btn', () => {
+    cy
+      .get('#historyContainer').should('be.visible')
+      .get('#controlPanelContainer button').should('have.text', 'Hide history')
+      .get('#controlPanelContainer button').click()
+      .get('#controlPanelContainer button').should('have.text', 'Show history')
+      .get('#historyContainer').should('not.be.visible')
   })
 })
 
@@ -119,15 +134,24 @@ describe('Select module', () => {
     cy.visit('/settings')
   })
 
-  const themes = {
-    light: 'Light theme',
-    colored: 'Colored theme',
-    dark: 'Dark theme',
-  }
+  const themes = ['Light theme', 'Colored theme', 'Dark theme']
 
   it('it check Select module', () => {
-    cy.get('#selectContainer')
-      .should('be.visible')
-      .contains('select', `${themes.light}`)
+    cy
+      .get('#selectContainer option')
+      .contains(themes[0])
+      .should('be.checked')
+
+    cy
+      .get('select').select(themes[1])
+      .get('#selectContainer option')
+      .contains(themes[1])
+      .should('be.checked')
+
+    cy.get('#selectContainer option')
+      .then($options => {
+        return Cypress._.map($options, $option => $option.innerHTML)
+      })
+      .should('deep.equal', ['Light theme', 'Colored theme', 'Dark theme'])
   })
 })
