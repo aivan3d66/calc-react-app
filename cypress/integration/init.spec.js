@@ -155,3 +155,66 @@ describe('Select module', () => {
       .should('deep.equal', ['Light theme', 'Colored theme', 'Dark theme'])
   })
 })
+
+describe('Operations', () => {
+  beforeEach(() => {
+    cy.visit('/home')
+  })
+
+  it('it addition test', () => {
+    cy
+      .get('#screenContainer').should('be.empty')
+      .get('#keypadContainer').contains('button', '2').click()
+      .get('#keypadContainer').contains('button', '+').click()
+      .get('#keypadContainer').contains('button', '2').click()
+      .get('#keypadContainer').contains('button', '=').click()
+    cy
+      .get('#screenContainer').should('have.text', '2+2=4')
+  })
+
+  it('it subtraction test', () => {
+    cy
+      .get('#screenContainer').should('be.empty')
+      .get('#keypadContainer').contains('button', '1').click()
+      .get('#keypadContainer').contains('button', '0').click()
+      .get('#keypadContainer').contains('button', '-').click()
+      .get('#keypadContainer').contains('button', '8').click()
+      .get('#keypadContainer').contains('button', '=').click()
+    cy
+      .get('#screenContainer').should('have.text', '10-8=2')
+  })
+
+  it('it multiplication test', () => {
+    cy
+      .get('#screenContainer').should('be.empty')
+      .get('#keypadContainer').contains('button', '4').click()
+      .get('#keypadContainer').contains('button', '*').click()
+      .get('#keypadContainer').contains('button', '4').click()
+      .get('#keypadContainer').contains('button', '=').click()
+    cy
+      .get('#screenContainer').should('have.text', '4*4=16')
+  })
+
+  it('it division test', () => {
+    cy
+      .get('#screenContainer').should('be.empty')
+      .get('#keypadContainer').contains('button', '9').click()
+      .get('#keypadContainer').contains('button', '/').click()
+      .get('#keypadContainer').contains('button', '3').click()
+      .get('#keypadContainer').contains('button', '=').click()
+    cy
+      .get('#screenContainer').should('have.text', '9/3=3')
+  })
+
+  it('it remainder test', () => {
+    cy
+      .get('#screenContainer').should('be.empty')
+      .get('#keypadContainer').contains('button', '1').click()
+      .get('#keypadContainer').contains('button', '7').click()
+      .get('#keypadContainer').contains('button', '%').click()
+      .get('#keypadContainer').contains('button', '2').click()
+      .get('#keypadContainer').contains('button', '=').click()
+    cy
+      .get('#screenContainer').should('have.text', '17%2=1')
+  })
+})
