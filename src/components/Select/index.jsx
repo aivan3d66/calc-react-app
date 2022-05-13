@@ -13,7 +13,11 @@ export default ({options, onChange, onChangeOption, themeValue}) => {
   }
 
   return (
-    <Select onChange={onChangeCallback} value={themeValue}>
+    <Select
+      onChange={onChangeCallback}
+      value={themeValue}
+      id="selectContainer"
+    >
       {mappedOptions}
     </Select>
   )
