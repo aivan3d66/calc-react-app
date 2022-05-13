@@ -32,7 +32,7 @@ export const Heading = styled.h3`
   font: normal normal normal 64px/77px "Gill Sans", sans-serif;
 `
 
-export const SelectHeading = styled.h3`
+export const SelectHeading = styled.h4`
   margin: 20px 0 0 0;
   font: normal normal normal 24px/29px "Gill Sans", sans-serif;
 `
