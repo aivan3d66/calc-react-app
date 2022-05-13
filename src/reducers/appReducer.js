@@ -31,7 +31,7 @@ export const appReducer = (state = initialState, { type, payload }) => {
     case ACTIONS.EVALUATE:
       return {
         ...state,
-        calcString: state.calcString + '=' + calculation(state.calcString),
+        calcString: state.calcString + '=' + calculation(state.calcString).toPrecision(3),
         historyList: [...state.historyList, state.calcString],
         isDisableBtn: true,
       }
