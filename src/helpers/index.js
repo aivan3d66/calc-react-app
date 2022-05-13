@@ -129,3 +129,10 @@ export const calculation = buffString => {
   }
   return polishStack[stackId]
 }
+
+export const getNormalizeNumber = x => {
+  if(x.toString().includes('.')) {
+    return x.toPrecision(3)
+  }
+  return x
+}

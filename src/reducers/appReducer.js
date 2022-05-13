@@ -1,5 +1,5 @@
 import { ACTIONS } from '@/constants'
-import { calculation, control } from '@/helpers'
+import { calculation, control, getNormalizeNumber } from '@/helpers'
 
 const initialState = {
   calcString: '',
@@ -31,7 +31,7 @@ export const appReducer = (state = initialState, { type, payload }) => {
     case ACTIONS.EVALUATE:
       return {
         ...state,
-        calcString: state.calcString + '=' + calculation(state.calcString).toPrecision(3),
+        calcString: state.calcString + '=' + getNormalizeNumber(calculation(state.calcString)),
         historyList: [...state.historyList, state.calcString],
         isDisableBtn: true,
       }
