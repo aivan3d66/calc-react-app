@@ -9,7 +9,7 @@ export default ({ screenValue }) => {
   const schema = themeValue === 'Light theme' ? theme.appLightTheme : themeValue === 'Colored theme' ? theme.colourTheme : theme.appDarkTheme
 
   return (
-    <Screen schema={schema}>
+    <Screen schema={schema} id="screenContainer">
       {screenValue}
     </Screen>
   )
