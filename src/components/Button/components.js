@@ -16,7 +16,7 @@ export const Button = styled.button`
 
   &:hover {
     color: #ffffff;
-    background-color: #bababa;
+    background-color: ${props => props.schema.buttonHoverColour || '#bababa'};
     border-color: transparent;
   }
 
