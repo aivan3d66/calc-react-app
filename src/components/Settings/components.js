@@ -7,11 +7,25 @@ export const Settings = styled.div`
   max-width: 1280px;
   margin: auto;
   padding: 20px;
-  color: #000000;
+  color: ${props => props.schema.textColour};
   background-color: inherit;
+
+  select {
+    padding: 28px;
+    color: ${props => props.schema.textColour};
+    background-color: ${props => props.schema.buttonColour};
+    transition: 0.3s;
+
+    &:hover,
+    &:focus {
+      color: white;
+      background-color: ${props => props.schema.buttonHoverColour || '#bababa'};
+    }
+  }
 
   button {
     width: 400px;
+    height: 100px;
     padding: 28px;
     margin: 20px 0;
     text-align: left;
@@ -23,12 +37,13 @@ export const Settings = styled.div`
 
     &:hover {
       color: #ffffff;
-      background-color: #bababa;
+      background-color: ${props => props.schema.buttonHoverColour || '#bababa'};
     }
   }
 `
 
 export const Heading = styled.h3`
+  color: inherit;
   font: normal normal normal 64px/77px "Gill Sans", sans-serif;
 `
 
