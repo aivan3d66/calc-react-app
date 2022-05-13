@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 export default ({showHistory, onControlBtnHandler}) => {
   return (
-    <ControlPanel>
+    <ControlPanel id="controlPanelContainer">
       <button onClick={() => onControlBtnHandler(!showHistory)}>{showHistory ? 'Hide' : 'Show'} history</button>
     </ControlPanel>
   )
