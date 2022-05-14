@@ -51,6 +51,11 @@ export const appReducer = (state = initialState, { type, payload }) => {
         ...state,
         showHistory: payload.value,
       }
+    case ACTIONS.SET_ERROR:
+      return {
+        ...state,
+        errorString: payload.value,
+      }
 
     default:
       return state
