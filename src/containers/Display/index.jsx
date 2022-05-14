@@ -23,6 +23,7 @@ export default (
     historyList,
     showHistory,
     calcString,
+    errorString,
   } = appState
 
   const onControlBtnHandler = value => getShowHistory(value)
@@ -30,7 +31,7 @@ export default (
   return (
     <Display>
       <MainScreen>
-        <Screen screenValue={calcString} />
+        <Screen screenValue={calcString} errorString={errorString}/>
         <Keypad
           btnValues={btnValues}
           isDisableBtn={isDisableBtn}
