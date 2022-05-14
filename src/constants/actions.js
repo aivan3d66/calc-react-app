@@ -6,4 +6,5 @@ export const ACTIONS = {
   CLEAR_HISTORY: "calculator/clear-history",
   SHOW_HISTORY: "calculator/show-history",
   THEME_TOGGLE: "calculator/theme-toggle",
+  SET_ERROR: "calculator/set-error",
 }
