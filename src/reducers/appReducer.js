@@ -8,6 +8,7 @@ const initialState = {
   showHistory: true,
   themeValue: 'Light theme',
   isDisableBtn: false,
+  errorString: '',
 }
 
 export const appReducer = (state = initialState, { type, payload }) => {
