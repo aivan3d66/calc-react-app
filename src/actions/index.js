@@ -8,4 +8,5 @@ export const actions = {
   clearHistory: () => ({ type: ACTIONS.CLEAR_HISTORY }),
   getShowHistory: value => ({ type: ACTIONS.SHOW_HISTORY, payload: { value } }),
   setToggleTheme: value => ({ type: ACTIONS.THEME_TOGGLE, payload: { value } }),
+  setError: value => ({ type: ACTIONS.SET_ERROR, payload: { value } }),
 }
