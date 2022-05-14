@@ -10,3 +10,9 @@ export const Screen = styled.div`
   border-bottom: 2px solid #707070;
   overflow: hidden;
 `
+
+export const Error = styled.h2`
+  color: red;
+  text-align: left;
+  font: normal normal normal 34px/44px Helvetica Neue;
+`
