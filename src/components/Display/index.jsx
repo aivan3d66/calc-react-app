@@ -1,10 +1,11 @@
 import React from 'react'
-import { Display, MainScreen } from '@/containers/Display/components'
+import { Display, MainScreen } from '@/components/Display/components'
 import Keypad from '@/components/Keypad'
 import Screen from '@/components/Screen'
 import History from '@/components/History'
 import ControlPanel from '@/components/ControlPanel'
 import PropTypes from 'prop-types'
+import ErrorBoundary from '@/containers/ErrorBoundary'
 
 export default (
   {
@@ -32,15 +33,18 @@ export default (
     <Display>
       <MainScreen>
         <Screen screenValue={calcString} errorString={errorString}/>
-        <Keypad
-          btnValues={btnValues}
-          isDisableBtn={isDisableBtn}
-          addValue={addValue}
-          deleteLastValue={deleteLastValue}
-          clearAll={clearAll}
-          getShowHistory={getShowHistory}
-          evaluate={evaluate}
-        />
+        <ErrorBoundary>
+          <Keypad
+            btnValues={btnValues}
+            isDisableBtn={isDisableBtn}
+            addValue={addValue}
+            deleteLastValue={deleteLastValue}
+            clearAll={clearAll}
+            getShowHistory={getShowHistory}
+            evaluate={evaluate}
+          />
+        </ErrorBoundary>
+
         <ControlPanel
           showHistory={showHistory}
           onControlBtnHandler={onControlBtnHandler}
