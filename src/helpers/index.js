@@ -132,7 +132,7 @@ export const calculation = buffString => {
 
 export const getNormalizeNumber = x => {
   if(x.toString().includes('.')) {
-    return x.toPrecision(3)
+    return x.toPrecision(2)
   }
   return x
 }
