@@ -3,6 +3,7 @@ import { Keypad } from '@/components/Keypad/components'
 import PropTypes from 'prop-types'
 import Button from '@/components/Button'
 import { ACTIONS } from '@/constants'
+import ErrorBoundary from '@/containers/ErrorBoundary'
 
 export default (
   {
@@ -20,29 +21,31 @@ export default (
 
   return (
     <Keypad id="keypadContainer">
-      {
-        btnValues.map((b, i) => {
-          const onBtnClick = () => addValue(b.value)
+      <ErrorBoundary>
+        {
+          btnValues && btnValues.map((b, i) => {
+            const onBtnClick = () => addValue(b.value)
 
-          const onButtonClickHandler = b => {
-            return b.dispatchType === ACTIONS.ADD_VALUE
-              ? onBtnClick
-              : b.dispatchType === ACTIONS.DELETE_VALUE
-                ? onDeleteBtnHandler
-                : b.dispatchType === ACTIONS.CLEAR
-                  ? onClearBtnHandler
-                  : onEvalBtnHandler
-          }
-          return (
-            <Button
-              key={i}
-              value={b.value}
-              isDisableBtn={isDisableBtn}
-              onBtnClick={onButtonClickHandler(b)}
-            />
-          )
-        })
-      }
+            const onButtonClickHandler = b => {
+              return b.dispatchType === ACTIONS.ADD_VALUE
+                ? onBtnClick
+                : b.dispatchType === ACTIONS.DELETE_VALUE
+                  ? onDeleteBtnHandler
+                  : b.dispatchType === ACTIONS.CLEAR
+                    ? onClearBtnHandler
+                    : onEvalBtnHandler
+            }
+            return (
+              <Button
+                key={i}
+                value={b.value}
+                isDisableBtn={isDisableBtn}
+                onBtnClick={onButtonClickHandler(b)}
+              />
+            )
+          })
+        }
+      </ErrorBoundary>
     </Keypad>
   )
 }
