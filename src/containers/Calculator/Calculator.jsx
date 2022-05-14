@@ -2,7 +2,7 @@ import React from 'react'
 import { btnValues } from '@/constants'
 import { connect } from 'react-redux'
 import { actions } from '@/actions'
-import Display from '@/containers/Display'
+import Display from '@/components/Display'
 
 const { addValue, deleteLastValue, clearAll, evaluate, clearHistory, getShowHistory, setToggleTheme } = actions
 
