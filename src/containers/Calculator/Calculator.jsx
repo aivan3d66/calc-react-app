@@ -3,6 +3,7 @@ import { btnValues } from '@/constants'
 import { connect } from 'react-redux'
 import { actions } from '@/actions'
 import Display from '@/components/Display'
+import PropTypes from 'prop-types'
 
 const { addValue, deleteLastValue, clearAll, evaluate, clearHistory, getShowHistory, setToggleTheme } = actions
 
@@ -41,3 +42,7 @@ export default connect(mapStateToProps, {
   setToggleTheme,
   evaluate,
 })(Calculator)
+
+Calculator.propTypes = {
+  appState: PropTypes.object,
+}
