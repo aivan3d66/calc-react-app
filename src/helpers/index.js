@@ -14,6 +14,12 @@ export const calculation = buffString => {
   const polishStack = []
   let stringId = -1
   let stackId = -1
+
+  const unaryMinus = buffArray[0] === '-'
+  if (unaryMinus) {
+    buffArray.shift()
+  }
+
   for (let i = 0; i < buffArray.length; i++) {
     switch (buffArray[i]) {
       case '(':
@@ -99,32 +105,48 @@ export const calculation = buffString => {
   let res
 
   for (stringId = 0; stringId <= stringIdMax; stringId++) {
-    switch (polishString[stringId]) {
-      case '+':
-        stackId--
-        polishStack[stackId] = polishStack[stackId] + polishStack[stackId + 1]
-        break
-      case '-':
-        stackId--
-        polishStack[stackId] = polishStack[stackId] - polishStack[stackId + 1]
-        break
-      case '*':
-        stackId--
-        polishStack[stackId] = polishStack[stackId] * polishStack[stackId + 1]
-        break
-      case '/':
-        stackId--
-        polishStack[stackId] = polishStack[stackId] / polishStack[stackId + 1]
-        break
-      case '%':
-        stackId--
-        int = Math.floor(polishStack[stackId] / polishStack[stackId + 1])
-        res = int * 2
-        polishStack[stackId] = polishStack[stackId] - res
-        break
-      default:
-        stackId++
-        polishStack[stackId] = parseFloat(polishString[stringId])
+    if (unaryMinus) {
+      switch (polishString[stringId]) {
+        case '+':
+          stackId--
+          polishStack[stackId] = polishStack[stackId] - polishStack[stackId + 1]
+          break
+        case '-':
+          stackId--
+          polishStack[stackId] = polishStack[stackId] + polishStack[stackId + 1]
+          break
+        default:
+          stackId++
+          polishStack[stackId] = parseFloat(polishString[stringId])
+      }
+    } else {
+      switch (polishString[stringId]) {
+        case '+':
+          stackId--
+          polishStack[stackId] = polishStack[stackId] + polishStack[stackId + 1]
+          break
+        case '-':
+          stackId--
+          polishStack[stackId] = polishStack[stackId] - polishStack[stackId + 1]
+          break
+        case '*':
+          stackId--
+          polishStack[stackId] = polishStack[stackId] * polishStack[stackId + 1]
+          break
+        case '/':
+          stackId--
+          polishStack[stackId] = polishStack[stackId] / polishStack[stackId + 1]
+          break
+        case '%':
+          stackId--
+          int = Math.floor(polishStack[stackId] / polishStack[stackId + 1])
+          res = int * 2
+          polishStack[stackId] = polishStack[stackId] - res
+          break
+        default:
+          stackId++
+          polishStack[stackId] = parseFloat(polishString[stringId])
+      }
     }
   }
   return polishStack[stackId]
