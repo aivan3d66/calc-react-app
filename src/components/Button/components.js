@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   margin: auto;
   padding: 10px;
   color: ${props => props.schema.textColour};
   text-align: center;
-  font: normal normal normal 64px/77px "Gill Sans", sans-serif;
+  font: normal normal normal 54px/60px "Gill Sans", sans-serif;
   border: 1px solid #707070;
-  border-radius: 32px;
+  border-radius: 30px;
   background-color: ${props => props.schema.buttonColour};
   cursor: pointer;
   transition: 0.3s;
