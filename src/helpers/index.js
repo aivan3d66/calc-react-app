@@ -149,7 +149,7 @@ export const calculation = buffString => {
       }
     }
   }
-  return polishStack[stackId]
+  return  unaryMinus ? -polishStack[stackId] : polishStack[stackId]
 }
 
 export const getNormalizeNumber = x => {
