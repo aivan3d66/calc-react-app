@@ -45,6 +45,7 @@ export const appReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         historyList: [],
+        calcString: '',
       }
     case ACTIONS.SHOW_HISTORY:
       return {
