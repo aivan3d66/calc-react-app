@@ -1,6 +1,5 @@
 import React from 'react'
 import Error from '@/components/Error'
-import { connect } from 'react-redux'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -20,10 +19,4 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    appState: state.appReducer,
-  }
-}
-
-export default connect(mapStateToProps, {})(ErrorBoundary)
+export default ErrorBoundary
