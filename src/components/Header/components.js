@@ -10,7 +10,7 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 1280px;
-  height: 120px;
+  height: 80px;
   padding: 0 20px;
   margin: auto;
   color: #ffffff;
