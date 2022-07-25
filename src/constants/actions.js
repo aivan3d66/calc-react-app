@@ -1,10 +1,8 @@
-export const ACTIONS = {
-  ADD_VALUE: "calculator/add-digit",
-  DELETE_VALUE: "calculator/delete-digit",
-  CLEAR: "calculator/clear",
-  EVALUATE: "calculator/evaluate",
-  CLEAR_HISTORY: "calculator/clear-history",
-  SHOW_HISTORY: "calculator/show-history",
-  THEME_TOGGLE: "calculator/theme-toggle",
-  SET_ERROR: "calculator/set-error",
-}
+export const ADD_VALUE = 'ADD_VALUE'
+export const DELETE_VALUE = 'DELETE_VALUE'
+export const CLEAR = 'CLEAR'
+export const EVALUATE = 'EVALUATE'
+export const CLEAR_HISTORY = 'CLEAR_HISTORY'
+export const SHOW_HISTORY = 'SHOW_HISTORY'
+export const THEME_TOGGLE = 'THEME_TOGGLE'
+export const SET_ERROR = 'SET_ERROR'
