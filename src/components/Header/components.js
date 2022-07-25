@@ -6,14 +6,14 @@ export const Header = styled.div`
 `
 
 export const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  max-width: 1280px;
-  height: 80px;
-  padding: 0 20px;
-  margin: auto;
   color: #ffffff;
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  margin: auto;
+  max-width: 1280px;
+  padding: 0 20px;
 
 
   h1, a {
@@ -38,12 +38,12 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   &[class*="active"]::before {
-    position: absolute;
-    bottom: -3px;
-    content: '';
-    width: 100%;
-    height: 2px;
-    color: #ffffff;
     background-color: #ffffff;
+    bottom: -3px;
+    color: #ffffff;
+    content: '';
+    height: 2px;
+    position: absolute;
+    width: 100%;
   }
 `

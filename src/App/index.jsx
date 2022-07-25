@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { Switch, Route } from 'react-router-dom'
+
 import { Routes } from '@/constants'
 import Loader from '@/components/Loader'
 import PageLayout from '@/pages/PageLayout'

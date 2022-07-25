@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import {Select} from "@/components/Select/components"
 
 export default ({options, onChange, onChangeOption, themeValue}) => {

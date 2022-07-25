@@ -1,8 +1,9 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { Settings, Heading, SelectHeading } from '@/components/Settings/components'
 import Select from '@/components/Select'
 import Button from '@/components/Button'
-import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/actions'
 import { themesOptions } from '@/constants'
 import theme from '@/theme'

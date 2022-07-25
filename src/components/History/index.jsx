@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { History } from '@/components/History/components'
 import { useSelector } from 'react-redux'
+
+import { History } from '@/components/History/components'
 import theme from '@/theme'
 
 export default ({ historyList }) => {

@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { Display, MainScreen } from '@/components/Display/components'
 import Keypad from '@/components/Keypad'
 import Screen from '@/components/Screen'
 import History from '@/components/History'
 import ControlPanel from '@/components/ControlPanel'
-import PropTypes from 'prop-types'
 import ErrorBoundary from '@/containers/ErrorBoundary'
 
 export default (

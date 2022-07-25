@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
+
 import { PageLayout } from '@/pages/PageLayout/components'
 import Header from '@/components/Header'
-import PropTypes from 'prop-types'
 import Loader from '@/components/Loader'
 import { Card } from '@/pages/Home/components'
-import { useSelector } from 'react-redux'
 import theme from '@/theme'
 
 export default ({ children }) => {

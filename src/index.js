@@ -4,6 +4,7 @@ import ReactDOM from "react-dom"
 import { HashRouter } from "react-router-dom"
 import { Provider } from "react-redux"
 import { ThemeProvider } from "styled-components"
+
 import Application from "@/App"
 import theme from "@/theme"
 import GlobalStyles from "@/globalStyles"

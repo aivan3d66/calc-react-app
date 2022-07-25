@@ -1,6 +1,7 @@
 import React from 'react'
-import { Keypad } from '@/components/Keypad/components'
 import PropTypes from 'prop-types'
+
+import { Keypad } from '@/components/Keypad/components'
 import Button from '@/components/Button'
 import { ACTIONS } from '@/constants'
 import ErrorBoundary from '@/containers/ErrorBoundary'

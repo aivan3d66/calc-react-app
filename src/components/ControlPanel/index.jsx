@@ -1,8 +1,10 @@
 import React from 'react'
-import { ControlPanel } from '@/components/ControlPanel/components'
 import PropTypes from 'prop-types'
-import theme from '@/theme'
 import { useSelector } from 'react-redux'
+
+import { ControlPanel } from '@/components/ControlPanel/components'
+import theme from '@/theme'
+
 
 export default ({showHistory, onControlBtnHandler}) => {
   const { themeValue } = useSelector(state => state.appReducer)

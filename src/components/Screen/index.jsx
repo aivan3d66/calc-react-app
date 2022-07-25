@@ -1,7 +1,8 @@
 import React from 'react'
-import { Error, Screen } from '@/components/Screen/components'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
+
+import { Error, Screen } from '@/components/Screen/components'
 import theme from '@/theme'
 
 export default ({ screenValue, errorString }) => {

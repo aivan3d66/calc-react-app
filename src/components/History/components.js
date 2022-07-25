@@ -1,30 +1,30 @@
 import styled from 'styled-components'
 
 export const History = styled.div`
+  border-left: 2px solid #707070;
+  color: ${props => props.schema.textColour};
   display: flex;
   flex-direction: column;
-  width: 340px;
   height: 85%;
-  padding: 20px 0;
   margin: 0 auto;
-  color: ${props => props.schema.textColour};
-  border-left: 2px solid #707070;
+  padding: 20px 0;
+  width: 340px;
 
   h2, ul {
-    text-align: center;
     font: normal normal normal 32px/38px "Gill Sans", sans-serif;
+    text-align: center;
   }
 
   ul {
     display: flex;
     flex-direction: column;
     height: 100%;
-    margin: 0;
-    padding: 20px;
-    text-align: left;
     list-style: none;
+    margin: 0;
     overflow: hidden;
     overflow-y: scroll;
+    padding: 20px;
+    text-align: left;
   }
 
   li {

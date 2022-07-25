@@ -1,6 +1,7 @@
 import React from 'react'
-import { Error } from '@/components/Error/components'
 import PropTypes from 'prop-types'
+
+import { Error } from '@/components/Error/components'
 
 export default ({ error }) => {
   return (

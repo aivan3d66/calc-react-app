@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from '@/components/Button/components'
 import { useSelector } from 'react-redux'
+
+import { Button } from '@/components/Button/components'
 import theme from '@/theme'
 
 export default ({ value, onBtnClick, isDisableBtn }) => {

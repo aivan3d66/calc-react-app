@@ -1,7 +1,8 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
 import { Header, HeaderWrapper, Navigation, StyledNavLink } from '@/components/Header/components'
 import { Routes } from '@/constants'
-import { useSelector } from 'react-redux'
 import theme from '@/theme'
 
 export default () => {
