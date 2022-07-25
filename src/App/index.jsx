@@ -1,14 +1,14 @@
-import React, { lazy, Suspense } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React, { lazy, Suspense } from "react"
+import { Switch, Route } from "react-router-dom"
 
-import { Routes } from '@/constants'
-import Loader from '@/components/Loader'
-import PageLayout from '@/pages/PageLayout'
+import { Routes } from "@/constants"
+import Loader from "@/components/Loader"
+import PageLayout from "@/pages/PageLayout"
 
-const HomePage = lazy(() => import('@/pages/Home'))
-const SettingsPage = lazy(() => import('@/pages/Settings'))
+const HomePage = lazy(() => import("@/pages/Home"))
+const SettingsPage = lazy(() => import("@/pages/Settings"))
 
-export default () => (
+export const App = () => (
   <Suspense fallback={<Loader />}>
     <Switch>
       <Route
