@@ -1,15 +1,41 @@
 {
-  "extends": ["standard", "standard-react", "prettier", "prettier/react"],
-  "plugins": ["prettier", "react-hooks", "cypress"],
+  "extends": [
+    "standard",
+    "standard-react",
+    "prettier",
+    "prettier/react",
+    //    "plugin:import/errors",
+    //    "plugin:import/warnings",
+    //    "plugin:cypress/recommended",
+    "eslint:recommended"
+  ],
+  "plugins": [
+    "prettier",
+    "react-hooks",
+    "import",
+    "better-styled-components",
+    "unused-imports",
+    "cypress"
+  ],
   "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "env": {
     "node": true,
+    "es2020": true,
     "browser": true,
     "jest": true,
     "cypress/globals": true
   },
   "rules": {
-    "arrow-parens": ["error", "as-needed"],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
     "semi": "error",
     "prefer-destructuring": "error",
     "max-len": [
@@ -35,11 +61,19 @@
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [".jsx"]
+        "extensions": [
+          ".jsx"
+        ]
       }
     ],
-    "jsx-quotes": ["error", "prefer-double"],
-    "comma-dangle": [2, "always-multiline"],
+    "jsx-quotes": [
+      "error",
+      "prefer-double"
+    ],
+    "comma-dangle": [
+      2,
+      "always-multiline"
+    ],
     "prefer-const": [
       "error",
       {
@@ -48,11 +82,40 @@
       }
     ],
     "react/prop-types": "off",
-    "react/jsx-fragments": [1, "element"]
+    "react/jsx-fragments": [
+      1,
+      "element"
+    ],
+    "react/no-unescaped-entities": "off",
+    "import/no-anonymous-default-export": "off",
+    "better-styled-components/sort-declarations-alphabetically": 2,
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "./**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ]
+      }
+    ]
   },
   "overrides": [
     {
-      "files": ["src/index.js"],
+      "files": [
+        "src/index.js"
+      ],
       "rules": {
         "react/jsx-filename-extension": "off",
         "prettier/prettier": [
@@ -63,5 +126,85 @@
         ]
       }
     }
+  ],
+  "ignorePatterns": [
+    "node_modules/"
   ]
+  //  "settings": {
+  //    "import/resolver": {
+  //      "alias": {
+  //        "map": [
+  //          [
+  //            "@/public",
+  //            "./public"
+  //          ],
+  //          [
+  //            "@/components",
+  //            "./components"
+  //          ],
+  //          [
+  //            "@/templates",
+  //            "./templates"
+  //          ],
+  //          [
+  //            "@/technologies",
+  //            "./components/sections/technologies"
+  //          ],
+  //          [
+  //            "@/frontend",
+  //            "./components/sections/technologies/frontend"
+  //          ],
+  //          [
+  //            "@/backend",
+  //            "./components/sections/technologies/backend"
+  //          ],
+  //          [
+  //            "@/portfolio",
+  //            "./components/sections/portfolio"
+  //          ],
+  //          [
+  //            "@/pages",
+  //            "./pages"
+  //          ],
+  //          [
+  //            "@/theme",
+  //            "./theme"
+  //          ],
+  //          [
+  //            "@/fields",
+  //            "./fields"
+  //          ],
+  //          [
+  //            "@/forms",
+  //            "./forms"
+  //          ],
+  //          [
+  //            "@/lib",
+  //            "./lib"
+  //          ],
+  //          [
+  //            "@/ui",
+  //            "./ui"
+  //          ],
+  //          [
+  //            "@/constants",
+  //            "./constants"
+  //          ],
+  //          [
+  //            "@/hooks",
+  //            "./hooks"
+  //          ],
+  //          [
+  //            "@/helpers",
+  //            "./helpers"
+  //          ]
+  //        ],
+  //        "extensions": [
+  //          ".js",
+  //          ".jsx",
+  //          ".json"
+  //        ]
+  //      }
+  //    }
+  //  }
 }
