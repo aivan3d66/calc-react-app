@@ -1,22 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 
-import { Error, Screen } from '@/components/Screen/components'
-import theme from '@/theme'
+import { ScreenContainer } from '@/components/Screen/styled'
+import { ThemeContext } from '@/components/ThemeProvider'
 
-export default ({ screenValue, errorString }) => {
-  const { themeValue } = useSelector(state => state.appReducer)
-  const schema = themeValue === 'Light theme' ? theme.appLightTheme : themeValue === 'Colored theme' ? theme.colourTheme : theme.appDarkTheme
+export const Screen = ({ screenValue }) => {
+  const { theme } = useContext(ThemeContext)
 
   return (
-    <Screen schema={schema} id="screenContainer">
-      {errorString ? <Error>{errorString}</Error> : screenValue}
-    </Screen>
+    <ScreenContainer theme={theme} id="screenContainer">
+      {screenValue}
+    </ScreenContainer>
   )
 }
 
 Screen.propTypes = {
-  screenValue: PropTypes.number,
-  errorString: PropTypes.string,
+  screenValue: PropTypes.string,
 }
