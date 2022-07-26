@@ -1,8 +1,8 @@
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
+import { createStore, applyMiddleware } from "redux"
+import createSagaMiddleware from "redux-saga"
 
-import { rootReducer } from './reducers'
-import rootSaga from './sagas'
+import { rootReducer } from "./reducers"
+import rootSaga from "./sagas"
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -12,5 +12,11 @@ const store = createStore(
 )
 
 sagaMiddleware.run(rootSaga)
+
+store.subscribe(() => {
+  localStorage['redux-store'] = JSON.stringify(
+    store.getState(),
+  )
+})
 
 export default store
