@@ -1,22 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 
-import { Button } from '@/components/Button/components'
-import theme from '@/theme'
+import { ButtonStyled } from '@/components/Button/styled'
+import { ThemeContext } from '@/components/ThemeProvider'
 
-export default ({ value, onBtnClick, isDisableBtn }) => {
-  const { themeValue } = useSelector(state => state.appReducer)
-  const schema = themeValue === 'Light theme' ? theme.appLightTheme : themeValue === 'Colored theme' ? theme.colourTheme : theme.appDarkTheme
+export const Button = ({ value, onBtnClick }) => {
+  const { theme } = useContext(ThemeContext)
 
   return (
-    <Button
-      schema={schema}
+    <ButtonStyled
+      theme={theme}
       onClick={onBtnClick}
-      disabled={isDisableBtn && value !== 'C'}
     >
       {value}
-    </Button>
+    </ButtonStyled>
   )
 }
 
