@@ -27,12 +27,12 @@ export const HeaderTitle = styled.h1`
 export const Navigation = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 240px;
 `
 
 export const StyledNavLink = styled(NavLink)`
   color: ${theme.colors.white};
   font-size: ${theme.textStyle.lg.fontSize}rem;
+  margin-left: ${theme.spaces[10]}px;
   position: relative;
   text-decoration: none;
 

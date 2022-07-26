@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { HeaderContainer, HeaderWrapper, Navigation, StyledNavLink, HeaderTitle } from '@/components/Header/styled'
-import { HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from '@/constants'
+import { HOME_PAGE_CLASS_ROUTE, HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from '@/constants'
 import { ThemeContext } from '@/components/ThemeProvider'
 
 export const Header = () => {
@@ -14,6 +14,9 @@ export const Header = () => {
         <Navigation>
           <StyledNavLink to={HOME_PAGE_ROUTE}>
             Home
+          </StyledNavLink>
+          <StyledNavLink to={HOME_PAGE_CLASS_ROUTE}>
+            Home class
           </StyledNavLink>
           <StyledNavLink to={SETTINGS_PAGE_ROUTE}>
             Settings
