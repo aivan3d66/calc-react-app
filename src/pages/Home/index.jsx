@@ -1,12 +1,14 @@
 import React from 'react'
 
-import PageLayout from "@/pages/PageLayout"
 import Calculator from '@/containers/Calculator/Calculator'
+import { PageLayout } from '@/containers/PageLayout'
 
-export default () => {
+const HomePage = () => {
   return (
     <PageLayout>
-      <Calculator/>
+      <Calculator />
     </PageLayout>
   )
 }
+
+export default HomePage
