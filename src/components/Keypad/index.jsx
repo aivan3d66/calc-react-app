@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Keypad } from '@/components/Keypad/components'
-import Button from '@/components/Button'
-import { ACTIONS } from '@/constants'
-import ErrorBoundary from '@/containers/ErrorBoundary'
+import { KeypadContainer, KeypadRow, KeypadColumn } from '@/components/Keypad/styled'
+import { buttonValues } from '@/constants'
+import { Button } from '@/components/Button'
 
-export default (
+export const Keypad = (
   {
-    btnValues,
     addValue,
     deleteLastValue,
     clearAll,
@@ -16,43 +14,28 @@ export default (
     isDisableBtn,
   },
 ) => {
-  const onDeleteBtnHandler = () => deleteLastValue()
-  const onClearBtnHandler = () => clearAll()
-  const onEvalBtnHandler = () => evaluate()
-
   return (
-    <Keypad id="keypadContainer">
-      <ErrorBoundary>
-        {
-          btnValues && btnValues.map((b, i) => {
-            const onBtnClick = () => addValue(b.value)
-
-            const onButtonClickHandler = b => {
-              return b.dispatchType === ACTIONS.ADD_VALUE
-                ? onBtnClick
-                : b.dispatchType === ACTIONS.DELETE_VALUE
-                  ? onDeleteBtnHandler
-                  : b.dispatchType === ACTIONS.CLEAR
-                    ? onClearBtnHandler
-                    : onEvalBtnHandler
-            }
-            return (
-              <Button
-                key={i}
-                value={b.value}
-                isDisableBtn={isDisableBtn}
-                onBtnClick={onButtonClickHandler(b)}
-              />
-            )
-          })
-        }
-      </ErrorBoundary>
-    </Keypad>
+    <KeypadContainer id="keypadContainer">
+      {
+        buttonValues.map((rows, index) => (
+          <KeypadRow key={index}>
+            {rows.map(column => (
+              <KeypadColumn key={column.value}>
+                <Button
+                  value={column.value}
+                  onClick={() => console.log(column.value)}>
+                  {column.value}
+                </Button>
+              </KeypadColumn>
+            ))}
+          </KeypadRow>
+        ))
+      }
+    </KeypadContainer>
   )
 }
 
 Keypad.propTypes = {
-  btnValues: PropTypes.array,
   addValue: PropTypes.func,
   deleteLastValue: PropTypes.func,
   clearAll: PropTypes.func,
