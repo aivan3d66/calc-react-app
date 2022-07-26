@@ -1,27 +1,29 @@
-import { css } from "styled-components"
+import { css } from 'styled-components'
 
-const font = "Gill Sans, sans-serif"
+const font = 'Gill Sans, sans-serif'
 
 // Color palette
-const black = "#000000"
-const darkGray = "#434343"
-const lightGray = "#707070"
-const extraLightGray = "#F2F2F2"
-const white = "#ffffff"
-const error = "#c86464"
-const lightPink = "#E6E6FFFF"
-const secondary = "#6c5b7b"
-const secondaryLight = "#6a6b7b"
+const black = '#000000'
+const darkGray = '#434343'
+const lightGray = '#707070'
+const extraLightGray = '#F2F2F2'
+const white = '#ffffff'
+const error = '#c86464'
+const lightPink = '#E6E6FFFF'
+const secondary = '#6c5b7b'
+const secondaryLight = '#6a6b7b'
 
 const boxShadows = [
-  "box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.75)",
+  'box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.75)',
 ]
 
 const size = {
+  xxs: 400,
   xs: 550,
   small: 768,
   med: 992,
   large: 1200,
+  max: 100,
 }
 
 const above = Object.keys(size).reduce((acc, label) => {
@@ -47,41 +49,7 @@ const theme = {
   below,
   boxShadows,
   font,
-  padding: [],
-  spaces: [
-    0,
-    1,
-    2,
-    4,
-    8,
-    10,
-    15,
-    16,
-    19,
-    20,
-    25,
-    32,
-    35,
-    40,
-    64,
-    70,
-    128,
-  ],
-  fontSizes: [
-    12,
-    14,
-    16,
-    20,
-    24,
-    32,
-    40,
-    56,
-    70,
-    72,
-    80,
-    100,
-    500,
-  ],
+  size,
   colors: {
     lightPink,
     secondary,
@@ -108,7 +76,7 @@ export const appLightTheme = {
     primary: extraLightGray,
   },
   buttonHoverColor: {
-    primary: secondary,
+    primary: lightGray,
   },
 }
 export const appDarkTheme = {
@@ -151,8 +119,27 @@ export const appColoredTheme = {
 export default {
   above,
   below,
+  size,
   boxShadows,
   font,
+  opacity: {
+    opacity0: 0,
+    opacity50: 0.5,
+    opacity100: 1,
+  },
+  height: {
+    full: 100,
+    h28: 7,
+    h32: 8,
+  },
+  radius: {
+    roundedSm: 0.5,  // 8px
+    roundedMd: 1.5,  // 24px
+    roundedFull: 9999,
+  },
+  paddings: {
+    p5: 1.25, // 20px
+  },
   spaces: [
     0,
     1,
@@ -161,21 +148,40 @@ export default {
     8,
     10,
     15,
+    16,
+    19,
     20,
     25,
-    // 9
-    16,
     32,
     35,
     40,
     64,
-    128,
-    19,
     70,
-    21,
-    170,
+    100,
+    128,
   ],
-  fontSizes: [12, 14, 16, 20, 24, 32, 40, 56, 72, 80, 500],
+  textStyle: {
+    sm: {
+      fontSize: 0.75,
+      lineHeight: 1,
+    },
+    base: {
+      fontSize: 1.25,
+      lineHeight: 1.75,
+    },
+    lg: {
+      fontSize: 1.875,
+      lineHeight: 2.25,
+    },
+    xl: {
+      fontSize: 2.25,
+      lineHeight: 2.5,
+    },
+    xl2: {
+      fontSize: 3,
+      lineHeight: 1,
+    },
+  },
   colors: {
     black,
     darkGray,
