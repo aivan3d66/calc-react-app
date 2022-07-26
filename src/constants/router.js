@@ -1,5 +1,2 @@
-export const Routes = {
-  START_PAGE: '/',
-  HOME_PAGE: '/home',
-  SETTINGS_PAGE: '/settings',
-}
+export const HOME_PAGE_ROUTE = "/"
+export const SETTINGS_PAGE_ROUTE = "/settings"
