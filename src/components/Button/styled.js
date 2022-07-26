@@ -13,7 +13,6 @@ export const ButtonStyled = styled.button`
   line-height: ${theme.textStyle.xl2.lineHeight}rem;
   margin: auto;
   padding: ${theme.spaces[8]}px;
-  text-align: center;
   transition: 0.3s;
   width: ${theme.size.max}px;
 
