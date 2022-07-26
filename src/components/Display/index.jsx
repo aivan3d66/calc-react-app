@@ -9,7 +9,6 @@ import { History } from '@/components/History'
 
 export const Display = (
   {
-    btnValues,
     appState,
     addValue,
     deleteLastValue,
@@ -31,7 +30,6 @@ export const Display = (
       <MainScreen>
         <Screen screenValue={calcString} errorString={errorString} />
         <Keypad
-          btnValues={btnValues}
           isDisableBtn={isDisableBtn}
           addValue={addValue}
           deleteLastValue={deleteLastValue}
@@ -48,7 +46,6 @@ export const Display = (
 
 Display.propTypes = {
   appState: PropTypes.object,
-  btnValues: PropTypes.array,
   addValue: PropTypes.func,
   deleteLastValue: PropTypes.func,
   clearAll: PropTypes.func,

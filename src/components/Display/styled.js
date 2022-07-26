@@ -6,10 +6,9 @@ export const DisplayContainer = styled.div`
   background-color: inherit;
   color: ${theme.colors.black};
   display: flex;
+  height: ${theme.size.small}px;
   margin: 0 auto;
-  max-height: ${theme.size.large}px;
   max-width: ${theme.size.large}px;
-  padding: ${theme.spaces[3]}px ${theme.spaces[6]}px;
 `
 
 export const MainScreen = styled.div`
