@@ -1,21 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Display, MainScreen } from '@/components/Display/components'
-import Keypad from '@/components/Keypad'
-import Screen from '@/components/Screen'
-import History from '@/components/History'
-import ControlPanel from '@/components/ControlPanel'
-import ErrorBoundary from '@/containers/ErrorBoundary'
+import { DisplayContainer, MainScreen } from '@/components/Display/styled'
+import { Screen } from '@/components/Screen'
+import { Keypad } from '@/components/Keypad'
+import { History } from '@/components/History'
 
-export default (
+
+export const Display = (
   {
     btnValues,
     appState,
     addValue,
     deleteLastValue,
     clearAll,
-    getShowHistory,
     evaluate,
   },
 ) => {
@@ -28,42 +26,29 @@ export default (
     errorString,
   } = appState
 
-  const onControlBtnHandler = value => getShowHistory(value)
-
   return (
-    <Display>
+    <DisplayContainer>
       <MainScreen>
-        <Screen screenValue={calcString} errorString={errorString}/>
-        <ErrorBoundary>
-          <Keypad
-            btnValues={btnValues}
-            isDisableBtn={isDisableBtn}
-            addValue={addValue}
-            deleteLastValue={deleteLastValue}
-            clearAll={clearAll}
-            getShowHistory={getShowHistory}
-            evaluate={evaluate}
-          />
-        </ErrorBoundary>
-
-        <ControlPanel
-          showHistory={showHistory}
-          onControlBtnHandler={onControlBtnHandler}
+        <Screen screenValue={calcString} errorString={errorString} />
+        <Keypad
+          btnValues={btnValues}
+          isDisableBtn={isDisableBtn}
+          addValue={addValue}
+          deleteLastValue={deleteLastValue}
+          clearAll={clearAll}
+          evaluate={evaluate}
         />
       </MainScreen>
-      {
-        showHistory && <History
-          historyList={historyList}
-        />
-      }
-    </Display>
+      <History
+        historyList={historyList} showHistory={showHistory}
+      />
+    </DisplayContainer>
   )
 }
 
 Display.propTypes = {
   appState: PropTypes.object,
   btnValues: PropTypes.array,
-  getShowHistory: PropTypes.func,
   addValue: PropTypes.func,
   deleteLastValue: PropTypes.func,
   clearAll: PropTypes.func,
