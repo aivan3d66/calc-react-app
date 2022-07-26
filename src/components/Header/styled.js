@@ -11,6 +11,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   color: ${theme.colors.white};
   display: flex;
+  height: ${theme.size.max}px;
   justify-content: space-between;
   margin: auto;
   max-width: ${theme.size.large}px;
