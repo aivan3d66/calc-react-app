@@ -9,6 +9,7 @@ import {
   DELETE_VALUE,
   THEME_TOGGLE,
   GET_LOCAL_STORE,
+  TOGGLE_THEME,
 } from '@/constants'
 
 const initialState = {
@@ -66,6 +67,11 @@ export const appReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         errorString: payload.value,
+      }
+    case TOGGLE_THEME:
+      return {
+        ...state,
+        themeValue: payload.value,
       }
     case GET_LOCAL_STORE:
       return {
