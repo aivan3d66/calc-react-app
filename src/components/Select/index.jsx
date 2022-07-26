@@ -1,31 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
+import PropTypes from "prop-types"
 
-import {Select} from "@/components/Select/components"
+import { SelectContainer, SelectOption, SelectTitle } from '@/components/Select/styled'
+import { ThemeContext } from '@/components/ThemeProvider'
 
-export default ({options, onChange, onChangeOption, themeValue}) => {
-  const mappedOptions = options
-    ? options.map((o, i) => <option key={o + '-' + i} value={o}>{o}</option>)
-    : []
+export const Select = ({ name, options, onChange, themeValue }) => {
+  const { theme } = useContext(ThemeContext)
 
   const onChangeCallback = e => {
-    onChangeOption && onChangeOption(e.currentTarget.value)
-    onChange && onChange(e)
+    onChange(e)
   }
 
   return (
-    <Select
-      onChange={onChangeCallback}
-      value={themeValue}
-      id="selectContainer"
-    >
-      {mappedOptions}
-    </Select>
+    <>
+      {name && <SelectTitle>{name}</SelectTitle>}
+      <SelectContainer
+        theme={theme}
+        onChange={onChangeCallback}
+        value={themeValue}
+        id="selectContainer"
+      >
+        {
+          options?.map(option => <SelectOption key={option} value={option}>{option}</SelectOption>)
+        }
+      </SelectContainer>
+    </>
   )
 }
 
 Select.propTypes = {
+  name: PropTypes.string,
   options: PropTypes.array,
   onChange: PropTypes.func,
-  onChangeOption: PropTypes.func,
 }
