@@ -1,12 +1,14 @@
-import React from 'react'
+import React from "react"
 
-import PageLayout from "@/pages/PageLayout"
-import Settings from "@/components/Settings"
+import { PageLayout } from "@/containers/PageLayout"
+import { Settings } from "@/components/Settings"
 
-export default () => {
+const SettingsPage = () => {
   return (
     <PageLayout>
       <Settings />
     </PageLayout>
   )
 }
+
+export default SettingsPage
