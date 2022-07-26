@@ -2,13 +2,13 @@ import React from 'react'
 
 import theme from '@/theme'
 
-import { Loader } from './components'
+import { LoaderContainer } from './styled'
 
 const LOADER_SIZE = 100
 
-export default () => {
+export const Loader = () => {
   return (
-    <Loader
+    <LoaderContainer
       type="Bars"
       color={theme.colors.secondary}
       height={LOADER_SIZE}
