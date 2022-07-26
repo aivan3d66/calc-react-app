@@ -6,7 +6,7 @@ export const ControlPanelContainer = styled.div`
   display: flex;
   height: ${theme.size.max}px;
   justify-content: center;
-  margin: 40px auto;
+  margin: 0 auto;
   width: ${theme.size.max}%;
 `
 
@@ -17,7 +17,6 @@ export const ControlPanelButton = styled.button`
   cursor: pointer;
   font-size: ${theme.textStyle.xl.fontSize}rem;
   line-height: ${theme.textStyle.xl.lineHeight}rem;
-
   transition: 0.3s;
 
   &:hover {
