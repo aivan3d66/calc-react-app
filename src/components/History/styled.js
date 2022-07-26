@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import theme from '@/theme'
 
 export const HistoryContainer = styled.div`
-  border-left: ${theme.spaces[1]}px solid ${theme.colors.lightGray};
+  border-left: ${theme.spaces[2]}px solid ${theme.colors.lightGray};
   display: flex;
   flex-direction: column;
   overflow: auto;
