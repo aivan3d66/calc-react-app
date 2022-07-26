@@ -2,19 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { btnValues } from '@/constants'
-import { actions } from '@/actions'
-import Display from '@/components/Display'
-
-
-const { addValue, deleteLastValue, clearAll, evaluate, clearHistory, getShowHistory, setToggleTheme } = actions
+import { addValue, deleteLastValue, clearAll, evaluate, clearHistory, getShowHistory, setToggleTheme } from '@/actions'
+import { Display } from '@/components/Display'
 
 class Calculator extends React.Component {
   render() {
     return (
       <React.Fragment>
         <Display
-          btnValues={btnValues}
           appState={this.props.appState}
           addValue={this.props.addValue}
           deleteLastValue={this.props.deleteLastValue}
