@@ -1,28 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 
-import { History } from '@/components/History/components'
-import theme from '@/theme'
+import {
+  HistoryContainer,
+  HistoryTitle,
+  HistoryList,
+  HistoryListItem,
+} from '@/components/History/styled'
+import { ThemeContext } from '@/components/ThemeProvider'
+import { ControlPanel } from '@/components/ControlPanel'
 
-export default ({ historyList }) => {
-  const { themeValue } = useSelector(state => state.appReducer)
-  const schema = themeValue === 'Light theme' ? theme.appLightTheme : themeValue === 'Colored theme' ? theme.colourTheme : theme.appDarkTheme
+export const History = ({ historyList, showHistory }) => {
+  const { theme } = useContext(ThemeContext)
 
   return (
-    <History schema={schema} id="historyContainer">
-      <h2>History</h2>
-      <ul>
+    <HistoryContainer id="historyContainer" theme={theme}>
+      <HistoryTitle>History</HistoryTitle>
+      <HistoryList>
         {
-          historyList.map(item => {
-            return <li key={item}>{item}</li>
+          historyList?.map(item => {
+            return <HistoryListItem key={item}>{item}</HistoryListItem>
           })
         }
-      </ul>
-    </History>
+      </HistoryList>
+      <ControlPanel showHistory={showHistory}/>
+    </HistoryContainer>
   )
 }
 
 History.propTypes = {
   historyList: PropTypes.array,
+  showHistory: PropTypes.bool,
 }
