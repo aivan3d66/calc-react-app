@@ -1,9 +1,6 @@
 import { takeEvery, put, fork, all } from 'redux-saga/effects'
 
-import { ACTIONS } from '@/constants'
-import { actions } from '@/actions'
-
-const {
+import {
   ADD_VALUE,
   CLEAR,
   CLEAR_HISTORY,
@@ -11,11 +8,10 @@ const {
   EVALUATE,
   SHOW_HISTORY,
   THEME_TOGGLE,
-} = ACTIONS
-
-const {
+} from '@/constants/actions'
+import {
   setError,
-} = actions
+} from '@/actions'
 
 export function* addNewValue() {
   try {
