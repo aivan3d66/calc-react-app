@@ -8,6 +8,7 @@ import {
   DELETE_VALUE,
   THEME_TOGGLE,
   GET_LOCAL_STORE,
+  TOGGLE_THEME,
 } from "@/constants"
 
 export const addValue = value => ({ type: ADD_VALUE, payload: { value } })
@@ -18,4 +19,5 @@ export const clearHistory = () => ({ type: CLEAR_HISTORY })
 export const getShowHistory = value => ({ type: SHOW_HISTORY, payload: { value } })
 export const setToggleTheme = value => ({ type: THEME_TOGGLE, payload: { value } })
 export const setError = value => ({ type: SET_ERROR, payload: { value } })
+export const toggleTheme = value => ({ type: TOGGLE_THEME, payload: { value } })
 export const getLocalStorage = value => ({ type: GET_LOCAL_STORE, payload: { value } })
