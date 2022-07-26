@@ -1,32 +1,46 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Settings, Heading, SelectHeading } from '@/components/Settings/components'
-import Select from '@/components/Select'
-import Button from '@/components/Button'
-import { actions } from '@/actions'
 import { themesOptions } from '@/constants'
-import theme from '@/theme'
+import { clearHistory, toggleTheme } from '@/actions'
+import {
+  SettingsContainer,
+  SettingsTitle,
+  SettingsButton,
+} from '@/components/Settings/styled'
+import { ThemeContext } from '@/components/ThemeProvider'
+import { Select } from '@/components/Select'
 
-export default () => {
+export const Settings = () => {
   const dispatch = useDispatch()
-  const { themeValue } = useSelector(state => state.appReducer)
-  const schema = themeValue === 'Light theme' ? theme.appLightTheme : themeValue === 'Colored theme' ? theme.colourTheme : theme.appDarkTheme
 
-  const onBtnHandler = () => dispatch(actions.clearHistory())
-  const onSelectHandler = value => dispatch(actions.setToggleTheme(value))
+  const { changeTheme, theme } = useContext(ThemeContext)
+  const { themeValue } = useSelector(state => state.appReducer)
+
+  const onClearButton = () => dispatch(clearHistory())
+
+  const onChangeSelectOption = e => {
+    changeTheme(e.target.value)
+    dispatch(toggleTheme(e.target.value))
+  }
 
   return (
-    <Settings id="settingsContainer" schema={schema}>
-      <Heading id="settings">Settings</Heading>
-      <SelectHeading>Switch theme</SelectHeading>
+    <SettingsContainer id="settingsContainer" theme={theme}>
+      <SettingsTitle id="settings">Settings</SettingsTitle>
       <Select
+        name="Switch theme"
         options={themesOptions}
         themeValue={themeValue}
-        onChangeOption={onSelectHandler}
+        onChange={onChangeSelectOption}
       />
-      <Button value="Clear all history" onBtnClick={onBtnHandler}>Clear all history</Button>
-    </Settings>
+      <SettingsButton
+        value="Clear all history"
+        onClick={onClearButton}
+        theme={theme}
+      >
+        Clear all history
+      </SettingsButton>
+    </SettingsContainer>
   )
 }
 
