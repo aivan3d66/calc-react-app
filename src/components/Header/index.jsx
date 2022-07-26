@@ -1,27 +1,25 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useContext } from 'react'
 
-import { Header, HeaderWrapper, Navigation, StyledNavLink } from '@/components/Header/components'
-import { Routes } from '@/constants'
-import theme from '@/theme'
+import { HeaderContainer, HeaderWrapper, Navigation, StyledNavLink, HeaderTitle } from '@/components/Header/styled'
+import { HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from '@/constants'
+import { ThemeContext } from '@/components/ThemeProvider'
 
-export default () => {
-  const { themeValue } = useSelector(state => state.appReducer)
-  const schema = themeValue === 'Light theme' ? theme.appLightTheme : themeValue === 'Colored theme' ? theme.colourTheme : theme.appDarkTheme
+export const Header = () => {
+  const { theme } = useContext(ThemeContext)
 
   return (
-    <Header schema={schema} id="headerNavigation">
+    <HeaderContainer id="headerNavigation" theme={theme}>
       <HeaderWrapper>
-        <h1>Calculator App</h1>
+        <HeaderTitle>Calculator App</HeaderTitle>
         <Navigation>
-          <StyledNavLink to={Routes.HOME_PAGE}>
+          <StyledNavLink to={HOME_PAGE_ROUTE}>
             Home
           </StyledNavLink>
-          <StyledNavLink to={Routes.SETTINGS_PAGE}>
+          <StyledNavLink to={SETTINGS_PAGE_ROUTE}>
             Settings
           </StyledNavLink>
         </Navigation>
       </HeaderWrapper>
-    </Header>
+    </HeaderContainer>
   )
 }
