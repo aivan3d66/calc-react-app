@@ -1,5 +1,15 @@
-import { ACTIONS } from '@/constants'
 import { calculation, control, getNormalizeNumber } from '@/helpers'
+import {
+  SET_ERROR,
+  EVALUATE,
+  SHOW_HISTORY,
+  CLEAR,
+  CLEAR_HISTORY,
+  ADD_VALUE,
+  DELETE_VALUE,
+  THEME_TOGGLE,
+  GET_LOCAL_STORE,
+} from '@/constants'
 
 const initialState = {
   calcString: '',
@@ -13,51 +23,55 @@ const initialState = {
 
 export const appReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case ACTIONS.ADD_VALUE:
+    case ADD_VALUE:
       return {
         ...state,
         calcString: control(state.calcString += payload.value),
       }
-    case ACTIONS.DELETE_VALUE:
+    case DELETE_VALUE:
       return {
         ...state,
         calcString: state.calcString.substr(0, state.calcString.length - 1),
       }
-    case ACTIONS.CLEAR:
+    case CLEAR:
       return {
         ...state,
         calcString: '',
         isDisableBtn: false,
       }
-    case ACTIONS.EVALUATE:
+    case EVALUATE:
       return {
         ...state,
         calcString: state.calcString + '=' + getNormalizeNumber(calculation(state.calcString)),
         historyList: [...state.historyList, state.calcString],
         isDisableBtn: true,
       }
-    case ACTIONS.THEME_TOGGLE:
+    case THEME_TOGGLE:
       return {
         ...state,
         themeValue: payload.value,
       }
-    case ACTIONS.CLEAR_HISTORY:
+    case CLEAR_HISTORY:
       return {
         ...state,
         historyList: [],
         calcString: '',
       }
-    case ACTIONS.SHOW_HISTORY:
+    case SHOW_HISTORY:
       return {
         ...state,
         showHistory: payload.value,
       }
-    case ACTIONS.SET_ERROR:
+    case SET_ERROR:
       return {
         ...state,
         errorString: payload.value,
       }
-
+    case GET_LOCAL_STORE:
+      return {
+        ...state,
+        ...payload.value,
+      }
     default:
       return state
   }
