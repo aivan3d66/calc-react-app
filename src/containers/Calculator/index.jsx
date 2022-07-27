@@ -5,6 +5,7 @@ import { AddCommand, Calculator, DivideCommand, ExponentCommand, MultiplyCommand
 import { getRoundedNum } from '@/helpers'
 import { CalculatorContainer, CalculatorPanel } from '@/containers/Calculator/styled'
 import { History } from '@/components/History'
+import { Keypad } from '@/components/Keypad'
 
 export default class CalculatorComponent extends React.Component {
   constructor(props) {
@@ -126,7 +127,7 @@ export default class CalculatorComponent extends React.Component {
       <CalculatorContainer>
         <CalculatorPanel>
           <Display value={firstValue} memory={memoryValue} />
-          <Keypad value={firstValue} handleClick={this.handleClick} />
+          <Keypad value={firstValue} onKeyClick={this.handleClick} />
         </CalculatorPanel>
         <History value={firstValue} memory={memoryValue} />
       </CalculatorContainer>
