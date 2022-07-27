@@ -4,13 +4,20 @@ import PropTypes from 'prop-types'
 import { ButtonStyled } from '@/components/Button/styled'
 import { ThemeContext } from '@/components/ThemeProvider'
 
-export const Button = ({ value, onBtnClick }) => {
+export const Button = ({ value, onKeyClick, type }) => {
   const { theme } = useContext(ThemeContext)
+
+  const handleButtonClick = value => () => {
+    onKeyClick(value)
+  }
 
   return (
     <ButtonStyled
       theme={theme}
-      onClick={onBtnClick}
+      onClick={handleButtonClick}
+      value={value}
+      key={value}
+      type={type}
     >
       {value}
     </ButtonStyled>
@@ -19,5 +26,6 @@ export const Button = ({ value, onBtnClick }) => {
 
 Button.propTypes = {
   value: PropTypes.string,
-  onBtnClick: PropTypes.func,
+  type: PropTypes.string,
+  onKeyClick: PropTypes.func,
 }
