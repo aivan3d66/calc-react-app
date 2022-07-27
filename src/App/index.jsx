@@ -8,6 +8,7 @@ import { ThemeContext, ThemeProvider } from "@/components/ThemeProvider"
 import { getLocalStorage } from "@/actions"
 
 const HomePage = lazy(() => import("@/pages/Home/index"))
+const HomeClassPage = lazy(() => import("@/pages/HomeClass/index"))
 const SettingsPage = lazy(() => import("@/pages/Settings/index"))
 
 export const Routes = [
@@ -19,7 +20,7 @@ export const Routes = [
   {
     id: "homeClass",
     name: HOME_PAGE_CLASS_ROUTE,
-    child: HomePage,
+    child: HomeClassPage,
   },
   {
     id: "settings",
