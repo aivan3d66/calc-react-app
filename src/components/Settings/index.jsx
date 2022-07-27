@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { themesOptions } from '@/constants'
-import { clearHistory, toggleTheme } from '@/actions'
+import { toggleTheme } from '@/actions'
 import {
   SettingsContainer,
   SettingsTitle,
@@ -10,6 +10,7 @@ import {
 } from '@/components/Settings/styled'
 import { ThemeContext } from '@/components/ThemeProvider'
 import { Select } from '@/components/Select'
+import { historyListStorage } from '@/utils'
 
 export const Settings = () => {
   const dispatch = useDispatch()
@@ -17,7 +18,10 @@ export const Settings = () => {
   const { changeTheme, theme } = useContext(ThemeContext)
   const { themeValue } = useSelector(state => state.appReducer)
 
-  const onClearButton = () => dispatch(clearHistory())
+  const handleClear = () => {
+    localStorage.removeItem('history')
+    historyListStorage.length = 0
+  }
 
   const onChangeSelectOption = e => {
     changeTheme(e.target.value)
@@ -35,7 +39,7 @@ export const Settings = () => {
       />
       <SettingsButton
         value="Clear all history"
-        onClick={onClearButton}
+        onClick={handleClear}
         theme={theme}
       >
         Clear all history
