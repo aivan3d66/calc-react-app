@@ -21,5 +21,5 @@ export default class Display extends React.Component {
 
 Display.propTypes = {
   value: PropTypes.string,
-  memory: PropTypes.string,
+  memory: PropTypes.number,
 }
