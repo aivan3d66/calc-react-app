@@ -1,3 +1,9 @@
+export const getRoundedNum = str => {
+  return str.length > 1 ? str.slice(0, -1) : '0'
+}
+
+export const getSliceNum = num => parseFloat(num.toFixed(2))
+
 export const control = testString => {
   testString = testString.replace(/\++/g, '+')
   testString = testString.replace(/--/g, '+')
