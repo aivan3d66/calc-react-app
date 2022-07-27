@@ -14,28 +14,12 @@ export const History = () => {
   const [history, setHistory] = useState(JSON.parse(localStorage.getItem('history')) || [])
   const [reloadHistory, setReloadHistory] = useState(null)
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     history: JSON.parse(localStorage.getItem('history')) || [],
-  //     reloadHistory: null,
-  //   }
-  // }
-
   useEffect(() => {
     const reload = setInterval(changeState, 0)
     setReloadHistory(reload)
 
     return () => clearInterval(reloadHistory)
   }, [])
-
-  // componentDidMount() {
-  //   const reload = setInterval(this.changeState, 0)
-  //   this.setState({ reloadHistory: reload })
-  // }
-  // componentWillUnmount() {
-  //   clearInterval(this.state.reloadHistory)
-  // }
 
   const changeState = () => {
     setHistory(JSON.parse(localStorage.getItem('history')))
