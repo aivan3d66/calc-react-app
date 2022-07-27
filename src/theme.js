@@ -139,6 +139,11 @@ export default {
   },
   paddings: {
     p5: 1.25, // 20px
+    p10: 2.5, // 40px
+  },
+  margins: {
+    m5: 1.25, // 20px
+    m10: 2.5, // 40px
   },
   spaces: [
     0,
