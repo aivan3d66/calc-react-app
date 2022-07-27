@@ -14,7 +14,7 @@ export const Button = ({ value, onKeyClick, type }) => {
   return (
     <ButtonStyled
       theme={theme}
-      onClick={handleButtonClick}
+      onClick={handleButtonClick(value)}
       value={value}
       key={value}
       type={type}

@@ -20,7 +20,7 @@ export default class Button extends React.Component {
         {({ theme }) => (
           <ButtonStyled
             theme={theme}
-            onClick={this.handleButtonClick}
+            onClick={this.handleButtonClick(this.props.value)}
             value={this.props.value}
             key={this.props.value}
             type={this.props.type}
