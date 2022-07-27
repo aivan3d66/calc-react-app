@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { DisplayContainer } from '@/components/Display/styled'
 import { ThemeContext } from '@/components/ThemeProvider'
+import { DisplayContainer } from '@/components/Display/styled'
 
 export const Display = ({ value, memory }) => {
   const { theme } = useContext(ThemeContext)
