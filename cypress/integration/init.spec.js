@@ -50,7 +50,7 @@ describe('Navigation module', () => {
   })
 })
 
-describe('Screen module', () => {
+describe('Display module', () => {
   beforeEach(() => {
     cy.visit('/home')
   })
