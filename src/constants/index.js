@@ -29,7 +29,7 @@ export const buttonValues = [
     { id: 16, value: '.', type: 'number' },
     { id: 17, value: '%', type: 'operation' },
     { id: 18, value: '0', type: 'number' },
-    { id: 19, value: '^', type: 'operation' },
+    { id: 19, value: '+/-', type: 'operation' },
     { id: 20, value: 'CE', type: 'function' },
   ],
 ]
