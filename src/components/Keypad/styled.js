@@ -7,7 +7,7 @@ export const KeypadContainer = styled.div`
   flex-direction: column;
   height: ${theme.size.xs}px;
   justify-content: space-between;
-  padding: 0 ${theme.paddings.p5}rem;
+  padding: 0 ${theme.paddings.p5}rem 0 0;
   width: ${theme.size.max}%;
 `
 
