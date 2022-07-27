@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext, useEffect, useState } from 'react'
 
 import {
   HistoryContainer,
@@ -8,27 +7,72 @@ import {
   HistoryListItem,
 } from '@/components/History/styled'
 import { ThemeContext } from '@/components/ThemeProvider'
-import { ControlPanel } from '@/components/ControlPanel'
+import { getSliceNum } from '@/helpers'
 
-export const History = ({ historyList, showHistory }) => {
+export const History = () => {
   const { theme } = useContext(ThemeContext)
+  const [history, setHistory] = useState(JSON.parse(localStorage.getItem('history')) || [])
+  const [reloadHistory, setReloadHistory] = useState(null)
+
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     history: JSON.parse(localStorage.getItem('history')) || [],
+  //     reloadHistory: null,
+  //   }
+  // }
+
+  useEffect(() => {
+    const reload = setInterval(changeState, 0)
+    setReloadHistory(reload)
+
+    return () => clearInterval(reloadHistory)
+  }, [])
+
+  // componentDidMount() {
+  //   const reload = setInterval(this.changeState, 0)
+  //   this.setState({ reloadHistory: reload })
+  // }
+  // componentWillUnmount() {
+  //   clearInterval(this.state.reloadHistory)
+  // }
+
+  const changeState = () => {
+    setHistory(JSON.parse(localStorage.getItem('history')))
+  }
+
+  const getHistory = history => {
+    let res = []
+    if (history) {
+      res = history.map(({ firstValue, operator, memory }, i) => {
+        return (
+          <HistoryListItem key={i}>
+            {
+              `${getSliceNum(firstValue)}
+              ${operator}
+              ${getSliceNum(memory)}`
+            }
+          </HistoryListItem>
+        )
+      })
+    }
+    return res
+  }
+
+  const operationsHistory = getHistory(history)
 
   return (
     <HistoryContainer id="historyContainer" theme={theme}>
       <HistoryTitle>History</HistoryTitle>
       <HistoryList>
-        {
-          historyList?.map(item => {
-            return <HistoryListItem key={item}>{item}</HistoryListItem>
-          })
-        }
+        {operationsHistory}
       </HistoryList>
-      <ControlPanel showHistory={showHistory}/>
+      {/* <ControlPanel showHistory={showHistory}/> */}
     </HistoryContainer>
   )
 }
 
-History.propTypes = {
-  historyList: PropTypes.array,
-  showHistory: PropTypes.bool,
-}
+// History.propTypes = {
+//   historyList: PropTypes.array,
+//   showHistory: PropTypes.bool,
+// }
