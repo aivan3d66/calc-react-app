@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { KeypadContainer } from '@/components/Keypad/styled'
+import { KeypadColumn, KeypadContainer, KeypadRow } from '@/components/Keypad/styled'
 import { buttonValues } from '@/constants'
 import { Button } from '@/components/Button'
 
@@ -14,16 +14,20 @@ export const Keypad = (
   return (
     <KeypadContainer id="keypadContainer">
       {
-        buttonValues.map(({ id, context, type }) => {
-          return (
-            <Button
-              key={id}
-              value={context}
-              type={type}
-              onKeyClick={onKeyClick}
-            />
-          )
-        })
+        buttonValues.map((rows, index) => (
+          <KeypadRow key={index}>
+            {rows.map(({id, value, type}) => (
+              <KeypadColumn key={value}>
+                <Button
+                  key={id}
+                  value={value}
+                  type={type}
+                  onKeyClick={onKeyClick}
+                />
+              </KeypadColumn>
+            ))}
+          </KeypadRow>
+        ))
       }
     </KeypadContainer>
   )
