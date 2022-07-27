@@ -6,8 +6,7 @@ export const CalculatorContainer = styled.div`
   background-color: inherit;
   color: ${theme.colors.black};
   display: flex;
-  height: ${theme.size.small}px;
-  margin: 0 auto;
+  margin: ${theme.margins.m5}rem auto 0 auto;
   max-width: ${theme.size.large}px;
 `
 
