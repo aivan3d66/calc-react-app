@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import theme from '@/theme'
 
-export const ScreenContainer = styled.div`
+export const DisplayContainer = styled.div`
   border-bottom: ${theme.spaces[2]}px solid ${theme.colors.darkGray};
   color: ${props => props.theme.textColor.primary};
   font-size: ${theme.textStyle.xl2.fontSize}rem;
