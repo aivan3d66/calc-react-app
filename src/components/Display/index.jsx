@@ -1,20 +1,16 @@
 import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
 import { ThemeContext } from '@/components/ThemeProvider'
 import { DisplayContainer } from '@/components/Display/styled'
 
-export const Display = ({ value, memory }) => {
+export const Display = () => {
   const { theme } = useContext(ThemeContext)
+  const expressionValue = useSelector(state => state.appReducer.expression)
 
   return (
     <DisplayContainer theme={theme} id="screenContainer">
-      {value || memory}
+      {expressionValue}
     </DisplayContainer>
   )
-}
-
-Display.propTypes = {
-  value: PropTypes.number,
-  memory: PropTypes.number,
 }
