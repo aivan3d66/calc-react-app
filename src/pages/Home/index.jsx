@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { PageLayout } from '@/containers/PageLayout'
-import CalculatorComponent from '@/containers/Calculator'
+import { CalculatorComponent } from '@/containers/Calculator'
 
 const HomePage = () => {
   return (
