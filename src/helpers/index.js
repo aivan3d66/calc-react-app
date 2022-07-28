@@ -1,3 +1,5 @@
+import { appColoredTheme, appDarkTheme, appLightTheme } from '@/theme'
+
 export const expressionHelper = (temp, isAnswer, reAnswer, expression, dispatch, writePad, equals) => {
   const operatorsString = '/*-+%.'
   const numbersString = '0123456789'
@@ -53,3 +55,15 @@ export const inputOperation = (operatorsString, expression, temp, isAnswer, reAn
 }
 
 export const getSliceNum = num => parseFloat(num.toFixed(2))
+
+export const initialThemeValue = value => {
+  let currentTheme
+  if (value === 'Light theme') {
+    currentTheme = appLightTheme
+  } else if (value === 'Dark theme') {
+    currentTheme = appDarkTheme
+  } else if (value === 'Colored theme') {
+    currentTheme = appColoredTheme
+  }
+  return currentTheme
+}
