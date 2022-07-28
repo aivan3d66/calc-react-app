@@ -15,6 +15,6 @@ export const Display = ({ value, memory }) => {
 }
 
 Display.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
   memory: PropTypes.number,
 }

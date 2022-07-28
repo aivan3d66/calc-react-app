@@ -121,7 +121,7 @@ export default class CalculatorComponent extends React.Component {
   }
 
   render() {
-    const { firstValue } = this.state
+    const { firstValue } = Number(this.state)
     const memoryValue = this.calculator.getValue()
     return (
       <CalculatorContainer>

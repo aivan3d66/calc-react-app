@@ -20,6 +20,6 @@ export default class Display extends React.Component {
 }
 
 Display.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
   memory: PropTypes.number,
 }
