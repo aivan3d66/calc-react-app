@@ -1,108 +1,213 @@
 import { getSliceNum } from '@/helpers'
 
-export const historyListStorage = JSON.parse(localStorage.getItem('history')) || []
-
-function add(x, y) {
-  historyListStorage.push({ firstValue: x, memory: y, operator: '+' })
-  return isNaN(x + y) ? 0 : x + y
-}
-
-function subtract(x, y) {
-  historyListStorage.push({ firstValue: x, memory: y, operator: '-' })
-  return isNaN(x - y) ? 0 : x - y
-}
-
-function multiply(x, y) {
-  historyListStorage.push({ firstValue: x, memory: y, operator: '*' })
-  return isNaN(x * y) ? 0 : x * y
-}
-
-function divide(x, y) {
-  historyListStorage.push({ firstValue: x, memory: y, operator: '/' })
-  return isNaN(x / y) ? 0 : x / y
-}
-
-function remove(x, y) {
-  historyListStorage.push({ firstValue: x, memory: y, operator: '%' })
-  return isNaN(x % y) ? 0 : x % y
-}
-
-function exponent(x, y) {
-  historyListStorage.push({ firstValue: x, memory: y, operator: '^' })
-  return isNaN(x ** y) ? 0 : x ** y
-}
-
-class Command {
-  constructor(execute, undo, value) {
-    this.execute = execute
-    this.undo = undo
-    this.value = value
-  }
-}
-
-export class AddCommand extends Command {
-  constructor(value) {
-    super(add, subtract, Number(value))
-  }
-}
-
-export class SubtractCommand extends Command {
-  constructor(value) {
-    super(subtract, add, Number(value))
-  }
-}
-
-export class MultiplyCommand extends Command {
-  constructor(value) {
-    super(multiply, divide, Number(value))
-  }
-}
-
-export class DivideCommand extends Command {
-  constructor(value) {
-    super(divide, multiply, Number(value))
-  }
-}
-
-export class RemainderCommand extends Command {
-  constructor(value) {
-    super(remove, multiply, Number(value))
-  }
-}
-
-export class ExponentCommand extends Command {
-  constructor(value) {
-    super(exponent, multiply, Number(value))
-  }
-}
-
-export class Calculator {
+class Calculator {
   constructor() {
-    this.current = 0
+    this.value = 0
     this.history = []
   }
 
-  execute(command) {
-    this.current = command.execute(this.current, command.value)
+  executeCommand(command) {
+    this.value = command.execute(this.value)
     this.history.push(command)
-    localStorage.setItem('history', JSON.stringify(historyListStorage))
   }
 
   undo() {
     const command = this.history.pop()
-    this.current = command.undo(this.current, command.value)
-  }
-
-  setCurrent(value) {
-    this.current = Number(value)
-  }
-
-  getValue() {
-    return getSliceNum(this.current)
-  }
-
-  reset() {
-    this.current = 0
-    this.history = []
+    this.value = command.undo(this.value)
   }
 }
+
+class AddCommand {
+  constructor(valueToAdd) {
+    this.valueToAdd = valueToAdd
+  }
+
+  execute(currentValue) {
+    return currentValue + this.valueToAdd
+  }
+
+  undo(currentValue) {
+    return currentValue - this.valueToAdd
+  }
+}
+
+class SubtractCommand {
+  constructor(valueToSubtract) {
+    this.valueToSubtract = valueToSubtract
+  }
+
+  execute(currentValue) {
+    return currentValue - this.valueToSubtract
+  }
+
+  undo(currentValue) {
+    return currentValue + this.valueToSubtract
+  }
+}
+
+class MultiplyCommand {
+  constructor(valueToMultiply) {
+    this.valueToMultiply = valueToMultiply
+  }
+
+  execute(currentValue) {
+    return currentValue * this.valueToMultiply
+  }
+
+  undo(currentValue) {
+    return currentValue / this.valueToMultiply
+  }
+}
+
+class DivideCommand {
+  constructor(valueToDivide) {
+    this.valueToDivide = valueToDivide
+  }
+
+  execute(currentValue) {
+    return currentValue / this.valueToDivide
+  }
+
+  undo(currentValue) {
+    return currentValue * this.valueToDivide
+  }
+}
+
+class RemainderDivideCommand {
+  constructor(valueToDivide) {
+    this.valueToDivide = valueToDivide
+  }
+
+  execute(currentValue) {
+    return currentValue % this.valueToDivide
+  }
+
+  undo() {
+    return 0
+  }
+}
+
+const operationPriorities = {
+  '+': 1,
+  '-': 1,
+  '*': 2,
+  '/': 2,
+  '%': 2,
+}
+
+const numbersStack = []
+const operationsStack = []
+
+function priority(value, operator) {
+  switch (operator) {
+    case '+': {
+      return new AddCommand(value)
+    }
+    case '-': {
+      return new SubtractCommand(value)
+    }
+    case '*': {
+      return new MultiplyCommand(value)
+    }
+    case '/': {
+      return new DivideCommand(value)
+    }
+    case '%': {
+      return new RemainderDivideCommand(value)
+    }
+    default: {
+      return 0
+    }
+  }
+}
+
+const calculator = new Calculator()
+
+export const calculation = expressionString => {
+  const helper = position => {
+    if (operationsStack[operationsStack.length - 1] === '-' &&
+      operationsStack[operationsStack.length - 2] === '(' &&
+      expressionString[position - 3] === '(') {
+      calculator.executeCommand(new AddCommand(parseFloat(0)))
+
+      calculator.executeCommand(priority(
+        parseFloat(numbersStack[numbersStack.length - 1]),
+        operationsStack[operationsStack.length - 1],
+      ))
+      numbersStack.pop()
+    } else {
+      calculator.executeCommand(new AddCommand(parseFloat(numbersStack[numbersStack.length - 2])))
+
+      calculator.executeCommand(priority(
+        parseFloat(numbersStack[numbersStack.length - 1]),
+        operationsStack[operationsStack.length - 1],
+      ))
+      numbersStack.pop()
+      numbersStack.pop()
+    }
+
+    numbersStack.push(parseFloat(calculator.value))
+    operationsStack.pop()
+    calculator.value = 0
+  }
+
+  try {
+    expressionString = expressionString.split(' ').filter(x => x !== '').map(item => {
+      if (/^\.\d+$/.test(item)) {
+        return (0 + item)
+      }
+      return item
+    })
+    for (let i = 0; i < expressionString.length; i++) {
+      if (/^\d+$|^\d+\.\d+$/.test(expressionString[i]) && expressionString[i + 1] === '(') {
+        expressionString.splice(i + 1, 0, '*')
+        i++
+      }
+    }
+
+    for (let i = 0; i < expressionString.length; i++) {
+      if (!isNaN(parseFloat(expressionString[i]))) numbersStack.push(expressionString[i])
+
+      if (operationsStack.length) {
+        if (operationPriorities[operationsStack[operationsStack.length - 1]] >=
+          operationPriorities[expressionString[i]] && expressionString[i] !== '(' &&
+          expressionString[i] !== ')') {
+          helper(i)
+        }
+        if (expressionString[i] === ')') {
+          if (expressionString[i - 2] === '(') {
+            expressionString.pop()
+            operationsStack.pop()
+            expressionString.splice(expressionString.length - 2, 1)
+            continue
+          }
+
+          for (let j = operationsStack.length - 1; j > 0; j--) {
+            helper(i)
+            if (operationsStack[j - 1] === '(') {
+              operationsStack.pop()
+              break
+            }
+          }
+        }
+      }
+      if (expressionString[i] !== ')' && isNaN(parseFloat(expressionString[i]))) operationsStack.push(expressionString[i])
+    }
+
+    while (operationsStack.length > 0) {
+      helper()
+    }
+
+    // eslint-disable-next-line prefer-destructuring
+    const res = numbersStack[0]
+    numbersStack.length = 0
+    return getSliceNum(res)
+  } catch (error) {
+    console.log(error)
+  } finally {
+    numbersStack.length = 0
+    operationsStack.length = 0
+    calculator.value = 0
+  }
+}
+
