@@ -1,10 +1,12 @@
 import React, { createContext, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 import {
   appLightTheme,
   appColoredTheme,
   appDarkTheme,
 } from '@/theme'
+import { initialThemeValue } from '@/helpers'
 
 export const ThemeContext = createContext({
   theme: appLightTheme,
@@ -13,7 +15,9 @@ export const ThemeContext = createContext({
 })
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(appLightTheme)
+  const { themeValue } = useSelector(state => state.appReducer)
+
+  const [theme, setTheme] = useState(() => initialThemeValue(themeValue))
 
   const changeTheme = value => {
     switch (value) {
