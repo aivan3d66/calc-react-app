@@ -1,45 +1,34 @@
-import React, { lazy, Suspense, useContext, useEffect } from "react"
-import { Switch, Route } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import React, { lazy, Suspense, useContext } from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import { Loader } from "@/components/Loader"
+import { Loader } from '@/components/Loader'
 import { HOME_PAGE_CLASS_ROUTE, HOME_PAGE_ROUTE, SETTINGS_PAGE_ROUTE } from '@/constants'
-import { ThemeContext, ThemeProvider } from "@/components/ThemeProvider"
-import { getLocalStorage } from "@/actions"
+import { ThemeContext, ThemeProvider } from '@/components/ThemeProvider'
 
-const HomePage = lazy(() => import("@/pages/Home/index"))
-const HomeClassPage = lazy(() => import("@/pages/HomeClass/index"))
-const SettingsPage = lazy(() => import("@/pages/Settings/index"))
+const HomePage = lazy(() => import('@/pages/Home/index'))
+const HomeClassPage = lazy(() => import('@/pages/HomeClass/index'))
+const SettingsPage = lazy(() => import('@/pages/Settings/index'))
 
 export const Routes = [
   {
-    id: "home",
+    id: 'home',
     name: HOME_PAGE_ROUTE,
     child: HomePage,
   },
   {
-    id: "homeClass",
+    id: 'homeClass',
     name: HOME_PAGE_CLASS_ROUTE,
     child: HomeClassPage,
   },
   {
-    id: "settings",
+    id: 'settings',
     name: SETTINGS_PAGE_ROUTE,
     child: SettingsPage,
   },
 ]
 
 export const App = () => {
-  const dispatch = useDispatch()
-
   const { theme } = useContext(ThemeContext)
-
-  useEffect(() => {
-    const data = JSON.parse(
-      localStorage.getItem('redux-store'),
-    )
-    dispatch(getLocalStorage(data?.calculator))
-  }, [])
 
   return (
     <ThemeProvider theme={theme}>
