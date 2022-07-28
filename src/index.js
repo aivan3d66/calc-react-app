@@ -9,18 +9,15 @@ import GlobalStyles from '@/globalStyles'
 import store from '@/store'
 import { App } from '@/App'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
-import { ThemeProvider } from '@/components/ThemeProvider'
 
 ReactDOM.render(
   <Provider store={store}>
-    <ThemeProvider>
-      <BrowserRouter>
-        <ErrorBoundary>
-          <App />
-          <GlobalStyles />
-        </ErrorBoundary>
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <App />
+        <GlobalStyles />
+      </ErrorBoundary>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 )
