@@ -1,24 +1,19 @@
-import { calculation, control, getNormalizeNumber } from '@/helpers'
 import {
   SET_ERROR,
   EVALUATE,
   SHOW_HISTORY,
-  CLEAR,
   CLEAR_HISTORY,
   ADD_VALUE,
   DELETE_VALUE,
-  THEME_TOGGLE,
-  GET_LOCAL_STORE,
   TOGGLE_THEME,
+  ADD_TO_HISTORY,
 } from '@/constants'
 
 const initialState = {
-  calcString: '',
-  history: [],
+  expression: '',
   historyList: [],
   showHistory: true,
   themeValue: 'Light theme',
-  isDisableBtn: false,
   errorString: '',
 }
 
@@ -27,36 +22,31 @@ export const appReducer = (state = initialState, { type, payload }) => {
     case ADD_VALUE:
       return {
         ...state,
-        calcString: control(state.calcString += payload.value),
+        expression: state.expression + payload.value,
       }
     case DELETE_VALUE:
       return {
         ...state,
-        calcString: state.calcString.substr(0, state.calcString.length - 1),
-      }
-    case CLEAR:
-      return {
-        ...state,
-        calcString: '',
-        isDisableBtn: false,
+        expression: '',
       }
     case EVALUATE:
       return {
         ...state,
-        calcString: state.calcString + '=' + getNormalizeNumber(calculation(state.calcString)),
-        historyList: [...state.historyList, state.calcString],
-        isDisableBtn: true,
+        expression: payload.value,
       }
-    case THEME_TOGGLE:
+    case ADD_TO_HISTORY:
       return {
         ...state,
-        themeValue: payload.value,
+        historyList: [
+          ...state.historyList,
+          payload.value,
+        ],
       }
     case CLEAR_HISTORY:
       return {
         ...state,
         historyList: [],
-        calcString: '',
+        expression: '',
       }
     case SHOW_HISTORY:
       return {
@@ -72,11 +62,6 @@ export const appReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         themeValue: payload.value,
-      }
-    case GET_LOCAL_STORE:
-      return {
-        ...state,
-        ...payload.value,
       }
     default:
       return state
