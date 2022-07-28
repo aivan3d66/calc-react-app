@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { ErrorContainer } from '@/components/Error/styled'
+import { ErrorContainer } from '@/components/ErrorBoundary/Error/styled'
 
 export const Error = ({ error }) => {
   return (

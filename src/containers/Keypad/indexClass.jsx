@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { KeypadColumn, KeypadContainer, KeypadRow } from '@/components/Keypad/styled'
+import { KeypadColumn, KeypadContainer, KeypadRow } from '@/containers/Keypad/styled'
 import { buttonValues } from '@/constants'
 import Button from '@/components/Button/indexClass'
 

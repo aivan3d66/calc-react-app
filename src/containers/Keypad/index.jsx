@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { expressionHelper } from '@/helpers'
-import { KeypadColumn, KeypadContainer, KeypadRow } from '@/components/Keypad/styled'
+import { KeypadColumn, KeypadContainer, KeypadRow } from '@/containers/Keypad/styled'
 import { buttonValues } from '@/constants'
 import { Button } from '@/components/Button'
 import { useIsAnswer } from '@/hooks'

@@ -5,7 +5,7 @@ import { getRoundedNum } from '@/helpers'
 import { CalculatorContainer, CalculatorPanel } from '@/containers/Calculator/styled'
 import Display from '@/components/Display/indexClass'
 import History from '@/components/History/indexClass'
-import Keypad from '@/components/Keypad/indexClass'
+import Keypad from '@/containers/Keypad/indexClass'
 
 export default class CalculatorComponent extends React.Component {
   constructor(props) {
