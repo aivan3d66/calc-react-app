@@ -5,7 +5,6 @@ import {
   SHOW_HISTORY,
   CLEAR_HISTORY,
   DELETE_VALUE,
-  GET_LOCAL_STORE,
   TOGGLE_THEME,
   ADD_TO_HISTORY,
 } from '@/constants'
@@ -18,4 +17,3 @@ export const clearHistory = () => ({ type: CLEAR_HISTORY })
 export const getShowHistory = value => ({ type: SHOW_HISTORY, payload: { value } })
 export const setError = value => ({ type: SET_ERROR, payload: { value } })
 export const toggleTheme = value => ({ type: TOGGLE_THEME, payload: { value } })
-export const getLocalStorage = value => ({ type: GET_LOCAL_STORE, payload: { value } })
