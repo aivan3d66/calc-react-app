@@ -13,9 +13,10 @@ export const KeypadContainer = styled.div`
 
 export const KeypadRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  margin: 0 auto;
 `
 
 export const KeypadColumn = styled.div`
+  display: flex;
   justify-content: space-between;
 `

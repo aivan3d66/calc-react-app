@@ -34,9 +34,9 @@ export const HistoryTitle = styled.h2`
 export const HistoryList = styled.ul`
   display: flex;
   flex-direction: column;
-  font-size: ${theme.textStyle.xl.fontSize}rem;
+  font-size: ${theme.textStyle.base.fontSize}rem;
   height: ${theme.size.max}%;
-  line-height: ${theme.textStyle.xl.lineHeight}rem;
+  line-height: ${theme.textStyle.base.lineHeight}rem;
   list-style: none;
   margin: 0;
   text-align: left;

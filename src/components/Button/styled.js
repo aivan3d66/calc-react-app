@@ -11,7 +11,7 @@ export const ButtonStyled = styled.button`
   font-size: ${theme.textStyle.xl2.fontSize}rem;
   height: ${theme.size.max}px;
   line-height: ${theme.textStyle.xl2.lineHeight}rem;
-  margin: auto;
+  margin-right: ${theme.margins.m5}rem;
   transition: 0.3s;
   width: ${theme.size.max}px;
 
