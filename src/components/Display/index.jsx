@@ -2,15 +2,20 @@ import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 
 import { ThemeContext } from '@/components/ThemeProvider'
-import { DisplayContainer } from '@/components/Display/styled'
+import { DisplayContainer, DisplayCurrent, DisplayHistory } from '@/components/Display/styled'
 
 export const Display = () => {
   const { theme } = useContext(ThemeContext)
-  const expressionValue = useSelector(state => state.appReducer.expression)
+  const { expression, expressionHistory } = useSelector(state => state.appReducer)
 
   return (
     <DisplayContainer theme={theme} id="screenContainer">
-      {expressionValue}
+      <DisplayHistory>
+        {expressionHistory}
+      </DisplayHistory>
+      <DisplayCurrent>
+        {expression}
+      </DisplayCurrent>
     </DisplayContainer>
   )
 }
