@@ -11,7 +11,10 @@ class CalculatorComponent extends React.Component {
     return (
       <CalculatorContainer>
         <CalculatorPanel>
-          <Display expressionValue={this.props.expressionValue} />
+          <Display
+            expression={this.props.expressionValue}
+            expressionHistory={this.props.expressionHistory}
+          />
           <KeypadContainer />
         </CalculatorPanel>
         <History history={this.props.history} />
@@ -23,6 +26,7 @@ class CalculatorComponent extends React.Component {
 const mapStateToProps = state => {
   return {
     expressionValue: state.appReducer.expression,
+    expressionHistory: state.appReducer.expressionHistory,
     history: state.appReducer.historyList,
   }
 }
