@@ -10,7 +10,7 @@ export default class Display extends React.Component {
       <ThemeContext.Consumer>
         {({ theme }) => (
           <DisplayContainer theme={theme} id="screenContainer">
-            {this.props.value || this.props.memory}
+            {this.props.expressionValue}
           </DisplayContainer>
         )}
       </ThemeContext.Consumer>
@@ -20,6 +20,5 @@ export default class Display extends React.Component {
 }
 
 Display.propTypes = {
-  value: PropTypes.number,
-  memory: PropTypes.number,
+  expressionValue: PropTypes.string,
 }
