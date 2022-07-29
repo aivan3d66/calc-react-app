@@ -7,9 +7,11 @@ import {
   DELETE_VALUE,
   TOGGLE_THEME,
   ADD_TO_HISTORY,
+  OPERATOR_CHANGE, ADD_TO_EXPRESSION_HISTORY,
 } from '@/constants'
 
 const initialState = {
+  expressionHistory: '',
   expression: '',
   historyList: [],
   showHistory: true,
@@ -33,6 +35,11 @@ export const appReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         expression: payload.value,
+      }
+    case ADD_TO_EXPRESSION_HISTORY:
+      return {
+        ...state,
+        expressionHistory: payload.value,
       }
     case ADD_TO_HISTORY:
       return {
@@ -63,6 +70,12 @@ export const appReducer = (state = initialState, { type, payload }) => {
         ...state,
         themeValue: payload.value,
       }
+    case OPERATOR_CHANGE:
+      return {
+        ...state,
+        expression: payload.value,
+      }
+
     default:
       return state
   }
