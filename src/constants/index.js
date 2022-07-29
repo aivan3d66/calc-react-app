@@ -32,4 +32,8 @@ export const buttonValues = [
     { id: 19, value: ')' },
     { id: 20, value: 'CE' },
   ],
+  [
+    { id: 21, value: '%' },
+    { id: 22, value: '+/-' },
+  ],
 ]
