@@ -6,7 +6,7 @@ import { KeypadColumn, KeypadContainer, KeypadRow } from '@/containers/Keypad/st
 import { buttonValues } from '@/constants'
 import { Button } from '@/components/Button'
 import { useIsAnswer } from '@/hooks'
-import { addToHistory, deleteValue, evaluate, addValue, setError } from '@/actions'
+import { addToHistory, deleteValue, evaluate, addValue, setError, changeOperator, addToExpressionHistory } from '@/actions'
 import { calculation } from '@/utils'
 
 export const Keypad = () => {
@@ -25,12 +25,17 @@ export const Keypad = () => {
         dispatch(evaluate(expression.slice(0, expression.length - 1)))
         break
       }
+      case '+/-': {
+        dispatch(changeOperator(expression.includes('-') ? expression.slice(1, expression.length) : '-' + expression))
+        break
+      }
       case '=': {
         try {
           const temp = expression
           const answer = calculation(expression.toString()).toString()
           const t = dispatch(evaluate(answer))
           dispatch(addToHistory(`${temp} = ${t.payload.value}`))
+          dispatch(addToExpressionHistory(temp))
           reAnswer()
         } catch (error) {
           dispatch(setError(error.message))

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addToHistory, addValue, deleteValue, evaluate, setError } from '@/actions'
+import { addToExpressionHistory, addToHistory, addValue, changeOperator, deleteValue, evaluate, setError } from '@/actions'
 import { calculation } from '@/utils'
 import { expressionHelper } from '@/helpers'
 import Keypad from '@/containers/Keypad/KeypadClass/indexClass'
@@ -44,12 +44,17 @@ const mapDispatchToProps = dispatch => {
           dispatch(evaluate(expression.slice(0, expression.length - 1)))
           break
         }
+        case '+/-': {
+          dispatch(changeOperator(expression.includes('-') ? expression.slice(1, expression.length) : '-' + expression))
+          break
+        }
         case '=': {
           try {
             const temp = expression
             const answer = calculation(expression.toString()).toString()
             const t = dispatch(evaluate(answer))
             dispatch(addToHistory(`${temp} = ${t.payload.value}`))
+            dispatch(addToExpressionHistory(temp))
             this.props.getIsAnswer()
           } catch (error) {
             dispatch(setError(error.message))
